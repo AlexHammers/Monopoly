@@ -3,19 +3,19 @@ The implementation of the server side of the Monoply game. By server I mean the 
 *GAME:*
 * monopoly.h:
 ** Contains forward-definition of all classes used in this implementation. All other header files #include this header.
-* bank.h:
+* bank.h/cpp:
 ** Contains specification for the bank class which will handle the money transactions for the game. This may end up being redundant as each player might just keep track of its own money and each property keep track of its own price.
-* player.h:
+* player.h/cpp:
 ** Contains specification for the player class which will contain information for each player, including its name, its money, and its properties.
-* board_space.h
+* board_space.h/cpp:
 ** Contains specification for the board_space class, which is the base class for all board spaces. It contains information such as space number and space name.
-* property.h:
+* property.h/cpp:
 ** Contains specification for the property class, which is the base class for all buyable properties in the game. It contains information common to these types of spaces, but not common to normal board_spaces such as price and mortgage value.
-* utility.h:
+* utility.h/cpp:
 ** Contains specification for the utility class, which contains information for each utility on the board, such as the dice multipliers for rent when a player lands on an owned utility. This is a concrete class.
-* railroad.h:
+* railroad.h/cpp:
 ** Contains specification for the railroad class, which contains information for each railroad. It contains information such as the rent for a railroad based upon how many railroads are owned. This is a concrete class.
-* residence.h:
+* residence.h/cpp:
 ** Contains specification for the residence class, which contains information for each colored property (such as Atlantic Avenue on a normal Monopoly board). This is a concrete class.
-* inventory.h:
+* inventory.h/cpp:
 ** Contains specification for a players inventory. This may or may not be removed. It stores information about the players owned properties and the amount of cash a player has.
