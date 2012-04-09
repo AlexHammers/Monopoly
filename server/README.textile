@@ -1,5 +1,6 @@
 The implementation of the server side of the Monoply game. By server I mean the program which handles all of the game logic and updates the client. This file will give an overview of the layout of the program, and the program is going to be writted mostly using OoP.
-GAME:
+
+*GAME:*
 	monopoly.h:
 		Contains forward-definition of all classes used in this implementation. All other header files #include this header.
 
