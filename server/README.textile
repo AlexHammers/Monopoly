@@ -1,10 +1,10 @@
 The implementation of the server side of the Monoply game. By server I mean the program which handles all of the game logic and updates the client. This file will give an overview of the layout of the program, and the program is going to be writted mostly using OoP.
 
-*GAME:*
-	monopoly.h:
-		Contains forward-definition of all classes used in this implementation. All other header files #include this header.
+* GAME:
+**	monopoly.h:
+***		Contains forward-definition of all classes used in this implementation. All other header files #include this header.
 
-	bank.h:
+**	bank.h:
 		Contains specification for the bank class which will handle the money transactions for the game. This may end up being redundant as each player might just keep track of its own money and each property keep track of its own price.
 
 	player.h:
