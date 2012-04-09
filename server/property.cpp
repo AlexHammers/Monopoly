@@ -1,8 +1,11 @@
 #include "property.h"
 #include <stdexcept>
+#include "iostream"
 
 using namespace monopoly::game;
 using std::invalid_argument;
+using std::cout;
+using std::endl;
 
 property::property(){
 	price = 0;
@@ -17,12 +20,17 @@ property::property(int p, int mortgage, int space, string name) : board_space(sp
 	owner = NULL;
 }
 
-bool property::action(monopoly::game::player * player)
+bool property::action(monopoly::game::player * actor)
 {
-	if(player == NULL)
+	if(actor == NULL)
 		throw invalid_argument("action: cannot accept NULL player argument");
-	if(owner == NULL)
+	else if (owner == NULL)
 		return true;
-	
-	return false;
+	else if(owner == actor)
+		return false;
+	else {
+		int rent = get_rent(actor, 10);
+		cout << "Rent: " << rent << endl;
+		return false;
+	}
 }
