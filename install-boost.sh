@@ -12,18 +12,16 @@
 # This will install version 1.49.0.
 
 BOOST_URL="http://sourceforge.net/projects/boost/files/boost/1.49.0/boost_1_49_0.tar.bz2/download"
-BOOST_LIBS="--with-filesystem"
+BOOST_LIBS=
 BOOST_TOOLSET="gcc"
 BOOST_LINKING="static"
 
-wget -O download $BOOST_URL
+#wget -O download $BOOST_URL
 
 tar --bzip2 -xf ./download
 cd ./boost_1_49_0
 ./bootstrap.sh
-./b2 toolset=$BOOST_TOOLSET link=$BOOST_LINKING $BOOST_LIBS stage
-cp -r ./boost ../
-cp -r ./stage/lib ../
+./b2 -a toolset=$BOOST_TOOLSET link=$BOOST_LINKING $BOOST_LIBS install
 cd ../
 rm -r ./boost_1_49_0
-rm download
+#rm download
