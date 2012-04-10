@@ -6,7 +6,7 @@
 
 CC		:=	g++
 HEADERS		:=	-I /usr/local
-SRC		:=	bank.cpp inventory.cpp player.cpp board_space.cpp property.cpp main.cpp utility.cpp
+SRC		:=	bank.cpp inventory.cpp player.cpp board_space.cpp property.cpp main.cpp utility.cpp railroad.cpp residence.cpp
 OBJ		:=	${SRC:.cpp=.o}
 DEPDIR		:=	.deps/
 OBJDIR		:=	.objs/
@@ -29,18 +29,12 @@ run: main
 	${NAME}
 
 # generate dependancy files at the same time as object compilation
-${OBJDIR}%.o : %.cpp ${OBJDIR} ${DEPDIR}
+${OBJDIR}%.o : %.cpp
 	${CC} ${CFLAGS} -MD -o $@ -c -MF ${@:${OBJDIR}%.o=${DEPDIR}%.d} ${LOGFILE} $< 
 	@cp ${DEPDIR}$*.d ${DEPDIR}$*.P; \
 	  sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
 	 	  -e '/^$$/ d' -e 's/$$/ :/' < ${DEPDIR}$*.P >> ${DEPDIR}$*.d; \
 	  rm -f ${DEPDIR}$*.P
-
-${DEPDIR}: 
-	mkdir ${DEPDIR}
-
-${OBJDIR}:
-	mkdir ${OBJDIR}
 
 -include ${DEP}
 
