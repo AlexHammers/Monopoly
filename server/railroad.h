@@ -1,22 +1,21 @@
-#ifndef PROPERTY_H
-#define PROPERTY_H
+#ifndef RAILROAD_H
+#define RAILROAD_H
+
 #include "monopoly.h"
-namespace monopoly{
-namespace game{
-class property{
+#include "property.h"
+
+#include <boost/array.hpp>
+
+using boost::array;
+namespace mg = monopoly::game;
+
+class monopoly::game::railroad : public monopoly::game::property {
 public:
-property();
-property(int price, int house_price, int hotel_price, 
-		int mortgage_value, int rent[], monopoly::color);
+	railroad();
+	railroad(int price, int mortgage_value, int space, string name, array<int, 5> rents);
 private:
-int price;
-int house_price;
-int hotel_price;
-int rent[];
-int mortgage_value;
-monopoly::COLOR color;
-};
-};
+	int get_rent(mg::player*, int dice_roll);
+	array<int, 5> rent;
 };
 
 #endif

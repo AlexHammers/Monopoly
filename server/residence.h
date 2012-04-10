@@ -1,22 +1,28 @@
-#ifndef PROPERTY_H
-#define PROPERTY_H
+#ifndef RESIDENCE_H
+#define RESIDENCE_H
 #include "monopoly.h"
-namespace monopoly{
-namespace game{
-class property{
+#include "property.h"
+
+#include <string>
+#include <boost/array.hpp>
+
+using boost::array;
+using std::string;
+
+namespace mg = monopoly::game;
+
+class mg::residence : mg::property {
 public:
-property();
-property(int price, int house_price, int hotel_price, 
-		int mortgage_value, int rent[], monopoly::color);
+	residence();
+	residence(int price, int mortgage, int space, string name, array<int, 6> rents, int monopoly_mult, int house_price, int hotel_price, monopoly::COLOR col);
 private:
-int price;
-int house_price;
-int hotel_price;
-int rent[];
-int mortgage_value;
-monopoly::COLOR color;
-};
-};
+	int get_rent(mg::player *, int);
+	array<int, 6> rent;
+	int monopoly_multiplier;
+	int house_price;
+	int hotel_price;
+	int num_houses;
+	monopoly::COLOR color;
 };
 
 #endif
