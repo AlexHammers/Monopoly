@@ -1,0 +1,2 @@
+To help you out to start with the specifications. You could create every player as an object where the object would hold data about the player's statistics. Taking it this 
+approuch would help you start simple and then edit it even more to add more complexity to the game by adding more kind of data that every player could hold. 
