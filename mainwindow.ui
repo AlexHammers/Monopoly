@@ -30,7 +30,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../../../../Downloads/Monopoly-Project-Themed-Board.jpg</pixmap>
+     <pixmap>:/images/Monopoly-Project-Themed-Board.jpg</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="player1_label">
