@@ -2,7 +2,7 @@
 #define MONOPOLY_H
 #define NULL	0
 namespace monopoly {
-enum COLOR {BROWN, LIGHT_BLUE, PINK, ORANGE, RED, YELLOW, GREEN, BLUE};
+enum COLOR {PURPLE, LIGHT_BLUE, PINK, ORANGE, RED, YELLOW, GREEN, BLUE};
 namespace server{
 class server;
 }

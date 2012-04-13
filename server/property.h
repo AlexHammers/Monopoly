@@ -11,12 +11,11 @@ public:
 	property();
 	property(int price, int mortgage_value, int space, string name);
 
-	bool action(monopoly::game::player * player);
+	bool action(monopoly::game::player * actor);
 protected:
 	int price;
 	int mortgage_value;
-	monopoly::game::player * owner;
-	virtual int get_rent() =0;
+	virtual int get_rent(monopoly::game::player * actor, int dice_roll) =0;
 };
 
 #endif

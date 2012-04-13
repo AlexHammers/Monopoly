@@ -16,14 +16,18 @@ BOOST_LIBS=
 BOOST_TOOLSET="gcc"
 BOOST_LINKING="static"
 
-wget -O download $BOOST_URL
+#wget -O download $BOOST_URL
 
 tar --bzip2 -xf ./download
 cd ./boost_1_49_0
 ./bootstrap.sh
+<<<<<<< HEAD
 ./b2 toolset=$BOOST_TOOLSET link=$BOOST_LINKING $BOOST_LIBS stage
 cp -r ./boost /usr/local/
 cp -r ./stage/lib /usr/local/lib/boost_static
+=======
+./b2 -a toolset=$BOOST_TOOLSET link=$BOOST_LINKING $BOOST_LIBS install
+>>>>>>> 3136fd4f5a98ebf00e70752fca64160e334a8247
 cd ../
 rm -r ./boost_1_49_0
-rm download
+#rm download
