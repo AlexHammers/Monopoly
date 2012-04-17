@@ -11,8 +11,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    Monopoly.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    Monopoly.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc

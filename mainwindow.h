@@ -18,23 +18,18 @@ public:
 private slots:
     void on_diceButton_clicked();
 
-    void on_actionButton_clicked();
+    void on_action2_Players_triggered();
 
-    void on_actionSingle_Player_triggered();
+    void on_action3_Players_triggered();
 
-    void on_radioOption_clicked();
+    void on_action4_Players_triggered();
 
-    void on_radioOption_2_clicked();
+    void on_action5_Players_triggered();
 
-    void on_radioOption_3_clicked();
-
-    void on_radioOption_4_clicked();
-
-    void on_radioOption_5_clicked();
+    void on_action6_Players_triggered();
 
 private:
     Ui::MainWindow *ui;
-    int currentPlayer;
     int diceRoll1;
     int diceRoll2;
     QString z;
