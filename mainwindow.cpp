@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "Monopoly.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,121 +25,322 @@ void MainWindow::on_diceButton_clicked()
     z.setNum(diceRoll2);
     ui->dice2_label->setText(z);
 
-
-    /*player.currentPlace += (diceRoll1 + diceRoll2);
-    if (player.currentPlace > 39)
+    if (evalutateJail(diceRoll1, diceRoll2))
     {
-        player.currentPlace -= 39;
-    }
+        int spaceMove = players[curPlayer].curPos + diceRoll1 + diceRoll2;
 
-    --move player picture
-    switch (currentPlayer)
-    {
+        if (spaceMove >= 40)
+        {
+            spaceMove -= 40;
+        }
+
+        switch (curPlayer)
+        {
         case 1:
-            ui->player1_char->geometry.setX();
-            ui->player1_char->geometry.setY();
+            ui->player1_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
         case 2:
-            ui->player2_char->geometry.setX();
-            ui->player2_char->geometry.setY();
+            ui->player2_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
         case 3:
-            ui->player3_char->geometry.setX();
-            ui->player3_char->geometry.setY();
+            ui->player3_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
         case 4:
-            ui->player4_char->geometry.setX();
-            ui->player4_char->geometry.setY();
+            ui->player4_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+        case 5:
+            ui->player5_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+        case 6:
+            ui->player6_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+        }
+
+        Move(diceRoll1 + diceRoll2);
     }
-
-    --display Place info and options, if any
-    ui->spaceBox->setTitle();
-
-    --if space has no options, move on to next player
-    currentPlayer++;
-    */
 }
 
-void MainWindow::on_actionButton_clicked()
+
+void MainWindow::on_action2_Players_triggered()
 {
-    //do action
-    currentPlayer++;
+    ui->player3_char->setVisible(false);
+    ui->player3_dollar->setVisible(false);
+    ui->player3_label->setVisible(false);
+    ui->player3_sign->setVisible(false);
+    ui->label_3->setVisible(false);
+
+    ui->player4_char->setVisible(false);
+    ui->player4_dollar->setVisible(false);
+    ui->player4_label->setVisible(false);
+    ui->player4_sign->setVisible(false);
+    ui->label_4->setVisible(false);
+
+    ui->player5_char->setVisible(false);
+    ui->player5_dollar->setVisible(false);
+    ui->player5_label->setVisible(false);
+    ui->player5_sign->setVisible(false);
+    ui->label_5->setVisible(false);
+
+    ui->player6_char->setVisible(false);
+    ui->player6_dollar->setVisible(false);
+    ui->player6_label->setVisible(false);
+    ui->player6_sign->setVisible(false);
+    ui->label_6->setVisible(false);
+
+    ui->player1_char->setVisible(true);
+    ui->player1_dollar->setVisible(true);
+    ui->player1_label->setVisible(true);
+    ui->player1_sign->setVisible(true);
+    ui->label->setVisible(true);
+
+    ui->player2_char->setVisible(true);
+    ui->player2_dollar->setVisible(true);
+    ui->player2_label->setVisible(true);
+    ui->player2_sign->setVisible(true);
+    ui->label_2->setVisible(true);
+
+    ui->player1_char->move(550, 540);
+    ui->player2_char->move(530, 530);
+    ui->player3_char->move(550, 580);
+    ui->player4_char->move(530, 560);
+    ui->player5_char->move(570, 530);
+    ui->player6_char->move(570, 560);
+
+    ui->player1_dollar->setText("1500");
+    ui->player2_dollar->setText("1500");
+
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    numOfPlayers = 2;
 }
 
-void MainWindow::on_actionSingle_Player_triggered()
+void MainWindow::on_action3_Players_triggered()
 {
-    ui->spaceBox->setVisible(false);
-    ui->actionButton->setVisible(false);
+    ui->player4_char->setVisible(false);
+    ui->player4_dollar->setVisible(false);
+    ui->player4_label->setVisible(false);
+    ui->player4_sign->setVisible(false);
+    ui->label_4->setVisible(false);
 
-    ui->player1_dollar->setText("1500.00");
+    ui->player5_char->setVisible(false);
+    ui->player5_dollar->setVisible(false);
+    ui->player5_label->setVisible(false);
+    ui->player5_sign->setVisible(false);
+    ui->label_5->setVisible(false);
 
-    ui->player2_label->setText("Computer 1");
-    ui->player2_dollar->setText("1500.00");
-    ui->player3_label->setText("Computer 2");
-    ui->player3_dollar->setText("1500.00");
-    ui->player4_label->setText("Computer 3");
-    ui->player4_dollar->setText("1500.00");
+    ui->player6_char->setVisible(false);
+    ui->player6_dollar->setVisible(false);
+    ui->player6_label->setVisible(false);
+    ui->player6_sign->setVisible(false);
+    ui->label_6->setVisible(false);
 
-    ui->activeplayer_dollar->setText("1500.00");
+    ui->player1_char->setVisible(true);
+    ui->player1_dollar->setVisible(true);
+    ui->player1_label->setVisible(true);
+    ui->player1_sign->setVisible(true);
+    ui->label->setVisible(true);
 
-    currentPlayer = 1;
+    ui->player2_char->setVisible(true);
+    ui->player2_dollar->setVisible(true);
+    ui->player2_label->setVisible(true);
+    ui->player2_sign->setVisible(true);
+    ui->label_2->setVisible(true);
 
-    //set up server stuff
+    ui->player3_char->setVisible(true);
+    ui->player3_dollar->setVisible(true);
+    ui->player3_label->setVisible(true);
+    ui->player3_sign->setVisible(true);
+    ui->label_3->setVisible(true);
+
+    ui->player1_char->move(550, 540);
+    ui->player2_char->move(530, 530);
+    ui->player3_char->move(550, 580);
+    ui->player4_char->move(530, 560);
+    ui->player5_char->move(570, 530);
+    ui->player6_char->move(570, 560);
+
+    ui->player1_dollar->setText("1500");
+    ui->player2_dollar->setText("1500");
+    ui->player3_dollar->setText("1500");
+
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    numOfPlayers = 3;
 }
 
-void MainWindow::on_radioOption_clicked()
+void MainWindow::on_action4_Players_triggered()
 {
-    ui->radioOption_2->setChecked(false);
-    ui->radioOption_3->setChecked(false);
-    ui->radioOption_4->setChecked(false);
-    ui->radioOption_5->setChecked(false);
+    ui->player5_char->setVisible(false);
+    ui->player5_dollar->setVisible(false);
+    ui->player5_label->setVisible(false);
+    ui->player5_sign->setVisible(false);
+    ui->label_5->setVisible(false);
 
+    ui->player6_char->setVisible(false);
+    ui->player6_dollar->setVisible(false);
+    ui->player6_label->setVisible(false);
+    ui->player6_sign->setVisible(false);
+    ui->label_6->setVisible(false);
+
+    ui->player1_char->setVisible(true);
+    ui->player1_dollar->setVisible(true);
+    ui->player1_label->setVisible(true);
+    ui->player1_sign->setVisible(true);
+    ui->label->setVisible(true);
+
+    ui->player2_char->setVisible(true);
+    ui->player2_dollar->setVisible(true);
+    ui->player2_label->setVisible(true);
+    ui->player2_sign->setVisible(true);
+    ui->label_2->setVisible(true);
+
+    ui->player3_char->setVisible(true);
+    ui->player3_dollar->setVisible(true);
+    ui->player3_label->setVisible(true);
+    ui->player3_sign->setVisible(true);
+    ui->label_3->setVisible(true);
+
+    ui->player4_char->setVisible(true);
+    ui->player4_dollar->setVisible(true);
+    ui->player4_label->setVisible(true);
+    ui->player4_sign->setVisible(true);
+    ui->label_4->setVisible(true);
+
+    ui->player1_char->move(550, 540);
+    ui->player2_char->move(530, 530);
+    ui->player3_char->move(550, 580);
+    ui->player4_char->move(530, 560);
+    ui->player5_char->move(570, 530);
+    ui->player6_char->move(570, 560);
+
+    ui->player1_dollar->setText("1500");
+    ui->player2_dollar->setText("1500");
+    ui->player3_dollar->setText("1500");
+    ui->player4_dollar->setText("1500");
+
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    numOfPlayers = 4;
 }
 
-void MainWindow::on_radioOption_2_clicked()
+void MainWindow::on_action5_Players_triggered()
 {
-    ui->radioOption->setChecked(false);
-    ui->radioOption_3->setChecked(false);
-    ui->radioOption_4->setChecked(false);
-    ui->radioOption_5->setChecked(false);
+    ui->player6_char->setVisible(false);
+    ui->player6_dollar->setVisible(false);
+    ui->player6_label->setVisible(false);
+    ui->player6_sign->setVisible(false);
+    ui->label_6->setVisible(false);
+
+    ui->player1_char->setVisible(true);
+    ui->player1_dollar->setVisible(true);
+    ui->player1_label->setVisible(true);
+    ui->player1_sign->setVisible(true);
+    ui->label->setVisible(true);
+
+    ui->player2_char->setVisible(true);
+    ui->player2_dollar->setVisible(true);
+    ui->player2_label->setVisible(true);
+    ui->player2_sign->setVisible(true);
+    ui->label_2->setVisible(true);
+
+    ui->player3_char->setVisible(true);
+    ui->player3_dollar->setVisible(true);
+    ui->player3_label->setVisible(true);
+    ui->player3_sign->setVisible(true);
+    ui->label_3->setVisible(true);
+
+    ui->player4_char->setVisible(true);
+    ui->player4_dollar->setVisible(true);
+    ui->player4_label->setVisible(true);
+    ui->player4_sign->setVisible(true);
+    ui->label_4->setVisible(true);
+
+    ui->player5_char->setVisible(true);
+    ui->player5_dollar->setVisible(true);
+    ui->player5_label->setVisible(true);
+    ui->player5_sign->setVisible(true);
+    ui->label_5->setVisible(true);
+
+    ui->player1_char->move(550, 540);
+    ui->player2_char->move(530, 530);
+    ui->player3_char->move(550, 580);
+    ui->player4_char->move(530, 560);
+    ui->player5_char->move(570, 530);
+    ui->player6_char->move(570, 560);
+
+    ui->player1_dollar->setText("1500");
+    ui->player2_dollar->setText("1500");
+    ui->player3_dollar->setText("1500");
+    ui->player4_dollar->setText("1500");
+    ui->player5_dollar->setText("1500");
+
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    numOfPlayers = 5;
 }
 
-void MainWindow::on_radioOption_3_clicked()
+void MainWindow::on_action6_Players_triggered()
 {
-    ui->radioOption_2->setChecked(false);
-    ui->radioOption->setChecked(false);
-    ui->radioOption_4->setChecked(false);
-    ui->radioOption_5->setChecked(false);
+    ui->player1_char->setVisible(true);
+    ui->player1_dollar->setVisible(true);
+    ui->player1_label->setVisible(true);
+    ui->player1_sign->setVisible(true);
+    ui->label->setVisible(true);
+
+    ui->player2_char->setVisible(true);
+    ui->player2_dollar->setVisible(true);
+    ui->player2_label->setVisible(true);
+    ui->player2_sign->setVisible(true);
+    ui->label_2->setVisible(true);
+
+    ui->player3_char->setVisible(true);
+    ui->player3_dollar->setVisible(true);
+    ui->player3_label->setVisible(true);
+    ui->player3_sign->setVisible(true);
+    ui->label_3->setVisible(true);
+
+    ui->player4_char->setVisible(true);
+    ui->player4_dollar->setVisible(true);
+    ui->player4_label->setVisible(true);
+    ui->player4_sign->setVisible(true);
+    ui->label_4->setVisible(true);
+
+    ui->player5_char->setVisible(true);
+    ui->player5_dollar->setVisible(true);
+    ui->player5_label->setVisible(true);
+    ui->player5_sign->setVisible(true);
+    ui->label_5->setVisible(true);
+
+    ui->player6_char->setVisible(true);
+    ui->player6_dollar->setVisible(true);
+    ui->player6_label->setVisible(true);
+    ui->player6_sign->setVisible(true);
+    ui->label_6->setVisible(true);
+
+    ui->player1_char->move(550, 540);
+    ui->player2_char->move(530, 530);
+    ui->player3_char->move(550, 580);
+    ui->player4_char->move(530, 560);
+    ui->player5_char->move(570, 530);
+    ui->player6_char->move(570, 560);
+
+    ui->player1_dollar->setText("1500");
+    ui->player2_dollar->setText("1500");
+    ui->player3_dollar->setText("1500");
+    ui->player4_dollar->setText("1500");
+    ui->player5_dollar->setText("1500");
+    ui->player6_dollar->setText("1500");
+
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    numOfPlayers = 6;
 }
-
-void MainWindow::on_radioOption_4_clicked()
-{
-    ui->radioOption_2->setChecked(false);
-    ui->radioOption_3->setChecked(false);
-    ui->radioOption->setChecked(false);
-    ui->radioOption_5->setChecked(false);
-}
-
-void MainWindow::on_radioOption_5_clicked()
-{
-    ui->radioOption_2->setChecked(false);
-    ui->radioOption_3->setChecked(false);
-    ui->radioOption_4->setChecked(false);
-    ui->radioOption->setChecked(false);
-}
-
-/*
-  Player
-    name
-    status (active / in jail)
-    current $
-    current space #
-  */
-
-/*
-  Space
-    number
-    name
-    color
-    cost
-    owned?
-    x coord
-    y coord
-  */
