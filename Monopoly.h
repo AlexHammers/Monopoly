@@ -25,17 +25,17 @@ struct Player
 
 struct Space
 {
-    const std::string name;
-    const SpaceType spaceType;
-	const int cost;
-    const int rent[6];
-	const int costPerHouse;
-	const int groupedWith1;
-	const int groupedWith2;
-	int numOfHouses;
-	int owner;
-    const int xCoord;
-    const int yCoord;
+  std::string name;
+  SpaceType spaceType;
+  int cost;
+  int rent[6];
+  int costPerHouse;
+  int groupedWith1;
+  int groupedWith2;
+  int numOfHouses;
+  int owner;
+  int xCoord;
+  int yCoord;
 };
 
 struct Cards
@@ -46,10 +46,10 @@ struct Cards
 //	End Structs
 
 //	Variables
-Player players[MaxNumOfPlayers];
-Space board[MaxBoardSize];
-int curPlayer;
-int numOfPlayers;
+extern int numOfPlayers;
+extern int curPlayer;
+extern Space board[MaxBoardSize];
+extern Player players [MaxNumOfPlayers];
 //	End Variables
 
 //	Functions
