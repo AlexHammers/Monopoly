@@ -45,12 +45,20 @@ const int payOut; //Can be + or -
 };
 // End Structs
 
+<<<<<<< HEAD
 // Variables
+=======
+//	Variables
+>>>>>>> 48538659540f257439bac2b97abb43a75a6f5703
 extern int numOfPlayers;
 extern int curPlayer;
 extern Space board[MaxBoardSize];
 extern Player players [MaxNumOfPlayers];
+<<<<<<< HEAD
 // End Variables
+=======
+//	End Variables
+>>>>>>> 48538659540f257439bac2b97abb43a75a6f5703
 
 // Functions
 void initGame(int numPlayers);
