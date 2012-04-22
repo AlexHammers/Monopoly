@@ -1,10 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Monopoly.h"
-Player players[MaxNumOfPlayers];
-Space board[MaxBoardSize];
-int curPlayer;
-int numOfPlayers;
 
 Player players[MaxNumOfPlayers];
 Space board[MaxBoardSize];
@@ -33,13 +29,8 @@ void MainWindow::on_diceButton_clicked()
 
     z.setNum(diceRoll2);
     ui->dice2_label->setText(z);
-<<<<<<< HEAD
 
     if (evaluateJail(diceRoll1, diceRoll2))
-=======
-    /*
-    if (evalutateJail(diceRoll1, diceRoll2))
->>>>>>> 48538659540f257439bac2b97abb43a75a6f5703
     {
         int spaceMove = players[curPlayer].curPos + diceRoll1 + diceRoll2;
 
@@ -71,7 +62,7 @@ void MainWindow::on_diceButton_clicked()
         }
 
         Move(diceRoll1 + diceRoll2);
-	}*/
+    }
 }
 
 
