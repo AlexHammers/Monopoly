@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 *.pro*
+=======
+*.d
+*.save*
+*.pro*
+>>>>>>> 8bf2bcb1f1a3bcc4264629b2db513a4e1bc72a6a
