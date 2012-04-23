@@ -625,6 +625,8 @@ void Move(int numOfSpaces)
     {
         players[curPlayer].curPos -= 40;
 
+	//This should always happen, then we can remove the go handling in the switch statement.
+	//Either that, or we call the go method here, but still remove it from the switch statement.
         //passed go
         if (players[curPlayer].curPos != 0)
         {
@@ -689,11 +691,17 @@ bool evaluateJail(int dice1, int dice2)
     }
 }
 
-/*void PayRent(int rent)
+void PayRent(int rent)
 {
-
+	int owner = board[players[curPlayer].curPos].owner;
+	//Don't want to pay rent if unnessecary...
+	if(owner != curPlayer)
+	{
+		players[owner].money += rent;
+		players[curPlayer].money -= rent;
+	}
 }
-
+/*
 void Property(int curPos)
 {
 
@@ -728,7 +736,7 @@ void Chance()
 {
 
 }
-
+//Isn't this unessecary? It seems we are handling pass go in the move method.
 void Go()
 {
 
