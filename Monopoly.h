@@ -77,6 +77,7 @@ void Chance();
 //void Go();
 void GoToJail();
 bool evaluateJail(int dice1, int dice2);
+void AddHouse(std::string propertyName);
 // End Functions
 
 #endif /* MONOPOLY_HPP_ */

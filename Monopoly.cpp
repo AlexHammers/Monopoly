@@ -725,3 +725,50 @@ void GoToJail()
 	players[curPlayer].inJail = true;
 	players[curPlayer].curPos = 10;
 }
+
+void AddHouse(std::string propertyName)
+{
+	int space;
+	for(space = 0; space < MaxBoardSize; space++)
+	{
+		if(propertyName.compare(board[space].name) && board[space].spaceType == _Property)
+			break;
+	}
+	if(space == MaxBoardSize)
+	{
+		//Inform user that the space isn't a property or they typed it in wrong
+		return;
+	}
+	if(board[space].owner == curPlayer)
+	{
+		if(board[space].numOfHouses == 5)
+		{
+			int group1 = board[space].groupedWith1, group2 = board[space].groupedWith2;
+
+			if(board[group1].owner == curPlayer && group2 == -1)
+			{
+				//Print house on board
+				players[curPlayer].money -= board[space].costPerHouse;
+				board[space].numOfHouses++;
+			}
+			else if(board[group1].owner == curPlayer && board[group2].owner == curPlayer)
+			{
+				//Print house on board
+				players[curPlayer].money -= board[space].costPerHouse;
+				board[space].numOfHouses++;
+			}
+			else
+			{
+				//Inform user that they don't have a monopoly
+			}
+		}
+		else
+		{
+			//Inform user that they can't add anymore houses
+		}
+	}
+	else
+	{
+		//Inform user that they don't own the property
+	}
+}
