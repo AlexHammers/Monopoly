@@ -80,7 +80,7 @@ void initGame(int numPlayers)
     board[4].spaceType = _IncomeTax;
     board[4].xCoord = 350;
     board[4].yCoord = 560;
-    board[4].cost = 300;
+    board[4].cost = 200;
     board[4].costPerHouse = 0;
     board[4].groupedWith1 = -1;
     board[4].groupedWith2 = -1;
@@ -587,7 +587,7 @@ void initGame(int numPlayers)
     }
 
     board[38].name = "Masters Lessons";
-    board[38].spaceType = _Utility;
+    board[38].spaceType = _LuxuryTax;
     board[38].xCoord = 560;
     board[38].yCoord = 440;
     board[38].cost = 75;
@@ -626,36 +626,45 @@ void Move(int numOfSpaces)
         players[curPlayer].curPos -= 40;
 
         //passed go
-        if (players[curPlayer].curPos != 0)
+        if (players[curPlayer].curPos >= 0)
         {
             players[curPlayer].money += 200;
         }
     }
 
     //do board space
-    /*switch (board[players[curPlayer].curPos].spaceType)
+    switch (board[players[curPlayer].curPos].spaceType)
     {
         case _Property:
             Property(players[curPlayer].curPos);
+            break;
         case _Railroad:
             Railroad(players[curPlayer].numOfRailroads);
+            break;
         case _Utility:
-            Utility(players[curPlayer].numOfUtilities);
+            Utility(players[curPlayer].numOfUtilities, numOfSpaces);
+            break;
         case _IncomeTax:
             IncomeTax();
+            break;
         case _LuxuryTax:
             LuxuryTax();
+            break;
         case _CommunityChest:
             CommunityChest();
+            break;
         case _Chance:
             Chance();
+            break;
         case _Go:
-            Go();
+            break;
         case _Jail:
+            break;
         case _FreeParking:
+            break;
         case _GoToJail:
             GoToJail();
-    }*/
+    }
 
     //increase player + evaluate
     curPlayer++;
@@ -689,52 +698,130 @@ bool evaluateJail(int dice1, int dice2)
     }
 }
 
-/*void PayRent(int rent)
+void PayRent(int rent)
 {
-
+    int owner = board[players[curPlayer].curPos].owner;
+    //Don't want to pay rent if unnessecary...
+    if(owner != curPlayer)
+    {
+        players[owner].money += rent;
+        players[curPlayer].money -= rent;
+    }
 }
 
 void Property(int curPos)
 {
-
+    if (board[curPos].owner == -1)
+    {
+        //display message asking if player wants to buy
+    }
+    else if (board[curPos].owner != curPlayer)
+    {
+        PayRent(board[curPos].rent[board[curPos].numOfHouses]);
+    }
 }
 
 void Railroad(int numOfRailroadsOwned)
 {
+    int rent = 0;
+    switch(numOfRailroadsOwned)
+    {
+        case 1:
+            rent = 25;
+            break;
+        case 2:
+            rent = 50;
+            break;
+        case 3:
+            rent = 100;
+            break;
+        case 4:
+            rent = 200;
+            break;
+        default:
+            break;
+    }
 
+    PayRent(rent);
 }
 
-void Utility(int numOfUtilitiesOwned)
+void Utility(int numOfUtilitiesOwned, int diceRoll)
 {
-
+    int rent = 0;
+    switch(numOfUtilitiesOwned)
+    {
+    case 1:
+        rent = 4*diceRoll;
+        break;
+    case 2:
+        rent = 10*diceRoll;
+        break;
+    default:
+        break;
+    }
+    PayRent(rent);
 }
 
 void IncomeTax()
 {
-
+    players[curPlayer].money -= board[players[curPlayer].curPos].cost;
 }
 
 void LuxuryTax()
 {
-
+    players[curPlayer].money -= board[players[curPlayer].curPos].cost;
 }
 
 void CommunityChest()
 {
+    int num = (rand() % 5);
 
+    switch (num)
+    {
+        case 0:
+            players[curPlayer].money += 10;
+            break;
+        case 1:
+            players[curPlayer].money += 20;
+            break;
+        case 2:
+            players[curPlayer].money += 30;
+            break;
+        case 3:
+            players[curPlayer].money -= 10;
+            break;
+        case 4:
+            players[curPlayer].money -= 20;
+            break;
+    }
 }
 
 void Chance()
 {
+    int num = (rand() % 5);
 
-}
-
-void Go()
-{
-
+    switch (num)
+    {
+        case 0:
+            players[curPlayer].money -= 35;
+            break;
+        case 1:
+            players[curPlayer].money -= 20;
+            break;
+        case 2:
+            players[curPlayer].money -= 10;
+            break;
+        case 3:
+            players[curPlayer].money += 10;
+            break;
+        case 4:
+            players[curPlayer].money += 20;
+            break;
+    }
 }
 
 void GoToJail()
 {
-
-}*/
+    players[curPlayer].inJail = true;
+    players[curPlayer].curPos = 20;
+}

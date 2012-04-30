@@ -120,7 +120,7 @@
      </font>
     </property>
     <property name="text">
-     <string>0.00</string>
+     <string>1500</string>
     </property>
    </widget>
    <widget class="QLabel" name="player1_dollar">
@@ -138,7 +138,7 @@
      </font>
     </property>
     <property name="text">
-     <string>0.00</string>
+     <string>1500</string>
     </property>
    </widget>
    <widget class="QLabel" name="player2_dollar">
@@ -156,7 +156,7 @@
      </font>
     </property>
     <property name="text">
-     <string>0.00</string>
+     <string>1500</string>
     </property>
    </widget>
    <widget class="QLabel" name="player3_dollar">
@@ -174,7 +174,7 @@
      </font>
     </property>
     <property name="text">
-     <string>0.00</string>
+     <string>1500</string>
     </property>
    </widget>
    <widget class="QLabel" name="player4_sign">
@@ -313,7 +313,7 @@
      </font>
     </property>
     <property name="text">
-     <string>0.00</string>
+     <string>1500</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -3804,7 +3804,7 @@
      <string>0</string>
     </property>
    </widget>
-   <widget class="QLabel" name="activeplayer_dollar_4">
+   <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
       <x>760</x>
@@ -3857,7 +3857,7 @@
      </font>
     </property>
     <property name="text">
-     <string>0.00</string>
+     <string>1500</string>
     </property>
    </widget>
    <widget class="QLabel" name="player6_dollar">
@@ -3875,7 +3875,7 @@
      </font>
     </property>
     <property name="text">
-     <string>0.00</string>
+     <string>1500</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">

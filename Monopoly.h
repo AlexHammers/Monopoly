@@ -37,12 +37,6 @@ struct Space
   int xCoord;
   int yCoord;
 };
-
-struct Cards
-{
-const std::string name;
-const int payOut; //Can be + or -
-};
 // End Structs
 
 // Variables
@@ -58,12 +52,11 @@ void Move(int numOfSpaces);
 void PayRent(int rent);
 void Property(int curPos);
 void Railroad(int numOfRailroadsOwned);
-void Utility(int numOfUtilitiesOwned);
+void Utility(int numOfUtilitiesOwned, int diceRoll);
 void IncomeTax();
 void LuxuryTax();
 void CommunityChest();
 void Chance();
-void Go();
 void GoToJail();
 bool evaluateJail(int dice1, int dice2);
 // End Functions
