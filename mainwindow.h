@@ -28,6 +28,8 @@ private slots:
 
     void on_action6_Players_triggered();
 
+    void updateBoard();
+
 private:
     Ui::MainWindow *ui;
     int diceRoll1;

@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->menuBar->setVisible(true);
 }
 
 MainWindow::~MainWindow()
@@ -62,6 +63,49 @@ void MainWindow::on_diceButton_clicked()
         }
 
         Move(diceRoll1 + diceRoll2);
+    }
+
+    updateBoard();
+}
+
+void MainWindow::updateBoard()
+{
+    z.setNum(curPlayer + 1);
+    ui->activeplayer_label->setText("Player " + z);
+
+    z.setNum(players[curPlayer].money);
+    ui->activeplayer_dollar->setText(z);
+
+    for (int i = 0; i < numOfPlayers; i++)
+    {
+        z.setNum(players[i].money);
+        switch (i)
+        {
+            case 0:
+                ui->player1_dollar->setText(z);
+                ui->player1_char->move(board[players[i].curPos].xCoord, board[players[i].curPos].yCoord);
+                break;
+            case 1:
+                ui->player2_dollar->setText(z);
+                ui->player2_char->move(board[players[i].curPos].xCoord, board[players[i].curPos].yCoord);
+                break;
+            case 2:
+                ui->player3_dollar->setText(z);
+                ui->player3_char->move(board[players[i].curPos].xCoord, board[players[i].curPos].yCoord);
+                break;
+            case 3:
+                ui->player4_dollar->setText(z);
+                ui->player4_char->move(board[players[i].curPos].xCoord, board[players[i].curPos].yCoord);
+                break;
+            case 4:
+                ui->player5_dollar->setText(z);
+                ui->player5_char->move(board[players[i].curPos].xCoord, board[players[i].curPos].yCoord);
+                break;
+            case 5:
+                ui->player6_dollar->setText(z);
+                ui->player6_char->move(board[players[i].curPos].xCoord, board[players[i].curPos].yCoord);
+                break;
+        }
     }
 }
 
