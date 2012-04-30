@@ -50,7 +50,6 @@ extern bool buttonPressN;
 // End Variables
 
 // Functions
-extern void displayMessage(int price);
 void initGame(int numPlayers);
 void Move(int numOfSpaces);
 void PayRent(int rent);

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Monopoly.h"
+#include "stdlib.h"
 
 Player players[MaxNumOfPlayers];
 Space board[MaxBoardSize];
@@ -63,6 +64,13 @@ void MainWindow::on_diceButton_clicked()
                 break;
         }
 
+        if(board[spaceMove].spaceType == _Property || board[spaceMove].spaceType == _Railroad ||board[spaceMove].spaceType == _Utility)
+        {
+            if (board[spaceMove].owner == -1)
+            {
+                displayMessage(board[spaceMove].cost);
+            }
+        }
         Move(diceRoll1 + diceRoll2);
     }
 
@@ -119,6 +127,10 @@ void MainWindow::displayMessage(int price)
 
     z.setNum(price);
     ui->boardspace_price_label->setText(z);
+
+    mutex.lock();
+    buyButtonWait.wait(&mutex);
+    mutex.unlock();
 }
 
 void MainWindow::on_yesButton_clicked()
@@ -129,6 +141,7 @@ void MainWindow::on_yesButton_clicked()
     ui->boardspace_price_label->setVisible(false);
 
     buttonPressY = true;
+    buyButtonWait.wakeAll();
 }
 
 void MainWindow::on_noButton_clicked()
@@ -139,6 +152,7 @@ void MainWindow::on_noButton_clicked()
     ui->boardspace_price_label->setVisible(false);
 
     buttonPressN = false;
+    buyButtonWait.wakeAll();
 }
 
 void MainWindow::on_player2button_clicked()

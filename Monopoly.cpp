@@ -732,6 +732,11 @@ void endGame()
 
 }
 
+void endGame()
+{
+
+}
+
 bool evaluateJail(int dice1, int dice2)
 {
     if (!players[curPlayer].inJail)
@@ -787,13 +792,26 @@ void killPlayer(int playerNum)
     players[playerNum].inJailCounter = 0;
 }
 
+void killPlayer(int playerNum)
+{
+    players[playerNum].inGame = false;
+    for(int i = 0; i < MaxBoardSize; i++)
+    {
+        if(board[i].owner == playerNum)
+        {
+            board[i].numOfHouses = 0;
+            board[i].owner = -1;
+        }
+    }
+    players[playerNum].inJail = false;
+    players[playerNum].inJailCounter = 0;
+}
+
 void Property(int curPos)
 {
     if (board[curPos].owner == -1)
     {
-        //displayMessage(board[curPos].cost);
-
-        while (!buttonPressY || !buttonPressN);
+        //while (!buttonPressY || !buttonPressN);
 
         if (buttonPressY)
         {
@@ -813,9 +831,7 @@ void Railroad(int numOfRailroadsOwned)
 {
     if (board[players[curPlayer].curPos].owner == -1)
     {
-        //displayMessage(board[players[curPlayer].curPos].cost);
-
-        while (!buttonPressY || !buttonPressN);
+        //while (!buttonPressY || !buttonPressN);
 
         if (buttonPressY)
         {
@@ -827,12 +843,8 @@ void Railroad(int numOfRailroadsOwned)
     }
     else
     {
-<<<<<<< HEAD
         //Railroads rent[0] = 25, [1] = 50, [2] = 100, [3] = 200
         PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned-1]);
-=======
-        PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned]);
->>>>>>> 7469d765c478a314d41d0f546368a6f8dd2ff8dd
     }
 }
 
@@ -840,9 +852,7 @@ void Utility(int numOfUtilitiesOwned, int diceRoll)
 {
     if (board[players[curPlayer].curPos].owner == -1)
     {
-        //displayMessage(board[players[curPlayer].curPos].cost);
-
-        while (!buttonPressY || !buttonPressN);
+        //while (!buttonPressY || !buttonPressN);
 
         if (buttonPressY)
         {
