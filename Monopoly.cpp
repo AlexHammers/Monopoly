@@ -13,6 +13,7 @@ void initGame(int numPlayers)
         players[i].money = 1500;
         players[i].numOfRailroads = 0;
         players[i].numOfUtilities = 0;
+	players[i].inGame = true;
     }
 
     curPlayer = 0;
@@ -717,11 +718,18 @@ void Move(int numOfSpaces)
     }
 
     //increase player + evaluate
-    curPlayer++;
-    if (curPlayer == numOfPlayers)
-    {
-        curPlayer = 0;
-    }
+    int previousPlayer = curPlayer;
+    curPlayer = (curPlayer + 1)%numOfPlayers;
+    while(!players[curPlayer].inGame)
+        curPlayer = (curPlayer + 1)%numOfPlayers;
+
+    if(curPlayer==previousPlayer)
+        endGame();
+}
+
+void endGame()
+{
+
 }
 
 bool evaluateJail(int dice1, int dice2)
@@ -756,7 +764,27 @@ void PayRent(int rent)
     {
         players[owner].money += rent;
         players[curPlayer].money -= rent;
+	if(players[curPlayer].money < 0)
+	{
+	    killPlayer(curPlayer);
+	}
+		
     }
+}
+
+void killPlayer(int playerNum)
+{
+    players[playerNum].inGame = false;
+    for(int i = 0; i < MaxBoardSize; i++)
+    {
+	if(board[i].owner == playerNum)
+	{
+	    board[i].numOfHouses = 0;
+            board[i].owner = -1;
+	}
+    }
+    players[playerNum].inJail = false;
+    players[playerNum].inJailCounter = 0;
 }
 
 void Property(int curPos)
@@ -780,7 +808,7 @@ void Railroad(int numOfRailroadsOwned)
     else
     {
         //Railroads rent[0] = 25, [1] = 50, [2] = 100, [3] = 200
-        PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned]);
+        PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned-1]);
     }
 }
 
