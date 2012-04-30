@@ -1,5 +1,8 @@
 #include "Monopoly.h"
-
+//for all the methods where things are purchase, we need to check that the person has that much money.
+//also, we could have all of them return a boolean which indicates if the transaction actually took place.
+//or we could do an int, which returns an error code (and that way we can have the gui display different thing based upon
+//the error. such as if the add house function returns a 1, the property name was not input correctly.
 void initGame(int numPlayers)
 {
 	numOfPlayers = numPlayers;
@@ -725,7 +728,9 @@ void GoToJail()
 	players[curPlayer].inJail = true;
 	players[curPlayer].curPos = 10;
 }
-
+//instead of doing all this case checking within this method (like if the owner doesn't have a monopoly,
+//we should do that outside the method, and have a precondition for this method that the propertyname is 
+//an actual property, and the owner can buy another house for it.
 void AddHouse(std::string propertyName)
 {
 	int space;
