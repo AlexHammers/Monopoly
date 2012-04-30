@@ -2,17 +2,28 @@
 #define MONOPOLY_HPP_
 
 #define MaxNumOfPlayers 6
-#define MaxBoardSize	40
+#define MaxBoardSize 40
 
 #include <string>
 
-//	Enums
-enum SpaceType{_Property, _Railroad, _Utility,
-                _IncomeTax, _LuxuryTax, _CommunityChest,
-               _Chance, _Go, _Jail, _FreeParking, _GoToJail};
-//	End enums
+// Enums
+enum SpaceType
+{
+	_Property,
+	_Railroad,
+	_Utility,
+	_IncomeTax,
+	_LuxuryTax,
+	_CommunityChest,
+	_Chance,
+	_Go,
+	_Jail,
+	_FreeParking,
+	_GoToJail
+};
+// End enums
 
-// 	Structs
+// Structs
 struct Player
 {
 	int money;
@@ -25,46 +36,48 @@ struct Player
 
 struct Space
 {
-  std::string name;
-  SpaceType spaceType;
-  int cost;
-  int rent[6];
-  int costPerHouse;
-  int groupedWith1;
-  int groupedWith2;
-  int numOfHouses;
-  int owner;
-  int xCoord;
-  int yCoord;
+	std::string name;
+	SpaceType spaceType;
+	int cost;
+	int rent[6];
+	int costPerHouse;
+	int groupedWith1;
+	int groupedWith2;
+	int numOfHouses;
+	int owner;
+	int xCoord;
+	int yCoord;
 };
 
 struct Cards
 {
 	const std::string name;
-	const int payOut;	//Can be + or -
+	const int payOut; //Can be + or -
 };
-//	End Structs
+// End Structs
 
-//	Variables
+// Variables
 extern int numOfPlayers;
 extern int curPlayer;
 extern Space board[MaxBoardSize];
-extern Player players [MaxNumOfPlayers];
-//	End Variables
+extern Player players[MaxNumOfPlayers];
+// End Variables
 
-//	Functions
+// Functions
+void initGame(int numPlayers);
 void Move(int numOfSpaces);
 void PayRent(int rent);
-void Property(int curPos);
-void Railroad(int numOfRailroadsOwned);
-void Utility(int numOfUtilitiesOwned);
+void Property();
+void Railroad();
+void Utility();
 void IncomeTax();
 void LuxuryTax();
 void CommunityChest();
 void Chance();
-void Go();
+//void Go();
 void GoToJail();
-bool evalutateJail(int dice1, int dice2);
-//	End Functions
+bool evaluateJail(int dice1, int dice2);
+void AddHouse(std::string propertyName);
+// End Functions
 
 #endif /* MONOPOLY_HPP_ */

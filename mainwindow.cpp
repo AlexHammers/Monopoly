@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Monopoly.h"
+
 Player players[MaxNumOfPlayers];
 Space board[MaxBoardSize];
 int curPlayer;
@@ -28,8 +29,8 @@ void MainWindow::on_diceButton_clicked()
 
     z.setNum(diceRoll2);
     ui->dice2_label->setText(z);
-    /*
-    if (evalutateJail(diceRoll1, diceRoll2))
+
+    if (evaluateJail(diceRoll1, diceRoll2))
     {
         int spaceMove = players[curPlayer].curPos + diceRoll1 + diceRoll2;
 
@@ -40,22 +41,28 @@ void MainWindow::on_diceButton_clicked()
 
         switch (curPlayer)
         {
-        case 1:
-            ui->player1_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
-        case 2:
-            ui->player2_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
-        case 3:
-            ui->player3_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
-        case 4:
-            ui->player4_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
-        case 5:
-            ui->player5_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
-        case 6:
-            ui->player6_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+            case 0:
+                ui->player1_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+                break;
+            case 1:
+                ui->player2_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+                break;
+            case 2:
+                ui->player3_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+                break;
+            case 3:
+                ui->player4_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+                break;
+            case 4:
+                ui->player5_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+                break;
+            case 5:
+                ui->player6_char->move(board[spaceMove].xCoord, board[spaceMove].yCoord);
+                break;
         }
 
         Move(diceRoll1 + diceRoll2);
-	}*/
+    }
 }
 
 
@@ -112,7 +119,7 @@ void MainWindow::on_action2_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    numOfPlayers = 2;
+    initGame(2);
 }
 
 void MainWindow::on_action3_Players_triggered()
@@ -169,7 +176,7 @@ void MainWindow::on_action3_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    numOfPlayers = 3;
+    initGame(3);
 }
 
 void MainWindow::on_action4_Players_triggered()
@@ -227,7 +234,7 @@ void MainWindow::on_action4_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    numOfPlayers = 4;
+    initGame(4);
 }
 
 void MainWindow::on_action5_Players_triggered()
@@ -286,7 +293,7 @@ void MainWindow::on_action5_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    numOfPlayers = 5;
+    initGame(5);
 }
 
 void MainWindow::on_action6_Players_triggered()
@@ -346,5 +353,5 @@ void MainWindow::on_action6_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    numOfPlayers = 6;
+    initGame(6);
 }
