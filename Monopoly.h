@@ -44,9 +44,12 @@ extern int numOfPlayers;
 extern int curPlayer;
 extern Space board[MaxBoardSize];
 extern Player players [MaxNumOfPlayers];
+extern bool buttonPressY;
+extern bool buttonPressN;
 // End Variables
 
 // Functions
+extern void displayMessage(int price);
 void initGame(int numPlayers);
 void Move(int numOfSpaces);
 void PayRent(int rent);

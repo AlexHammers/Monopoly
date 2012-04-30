@@ -762,7 +762,17 @@ void Property(int curPos)
 {
     if (board[curPos].owner == -1)
     {
-        //display message asking if player wants to buy
+        displayMessage(board[curPos].cost);
+
+        while (!buttonPressY || !buttonPressN);
+
+        if (buttonPressY)
+        {
+            board[curPos].owner = curPlayer;
+        }
+
+        buttonPressY = false;
+        buttonPressN = false;
     }
     else if (board[curPos].owner != curPlayer)
     {
@@ -774,11 +784,20 @@ void Railroad(int numOfRailroadsOwned)
 {
     if (board[players[curPlayer].curPos].owner == -1)
     {
-        //Prompt user if they want to buy
+        displayMessage(board[players[curPlayer].curPos].cost);
+
+        while (!buttonPressY || !buttonPressN);
+
+        if (buttonPressY)
+        {
+            board[players[curPlayer].curPos].owner = curPlayer;
+        }
+
+        buttonPressY = false;
+        buttonPressN = false;
     }
     else
     {
-        //Railroads rent[0] = 25, [1] = 50, [2] = 100, [3] = 200
         PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned]);
     }
 }
@@ -787,7 +806,17 @@ void Utility(int numOfUtilitiesOwned, int diceRoll)
 {
     if (board[players[curPlayer].curPos].owner == -1)
     {
+        displayMessage(board[players[curPlayer].curPos].cost);
 
+        while (!buttonPressY || !buttonPressN);
+
+        if (buttonPressY)
+        {
+            board[players[curPlayer].curPos].owner = curPlayer;
+        }
+
+        buttonPressY = false;
+        buttonPressN = false;
     }
     else
     {

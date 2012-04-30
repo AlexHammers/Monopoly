@@ -15,6 +15,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void displayMessage(int price);
+
 private slots:
     void on_diceButton_clicked();
 
@@ -29,6 +31,10 @@ private slots:
     void on_action6_Players_triggered();
 
     void updateBoard();
+
+    void on_yesButton_clicked();
+
+    void on_noButton_clicked();
 
 private:
     Ui::MainWindow *ui;
