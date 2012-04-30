@@ -6,13 +6,14 @@ Player players[MaxNumOfPlayers];
 Space board[MaxBoardSize];
 int curPlayer;
 int numOfPlayers;
+bool buttonPressY;
+bool buttonPressN;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->menuBar->setVisible(true);
 }
 
 MainWindow::~MainWindow()
@@ -109,8 +110,38 @@ void MainWindow::updateBoard()
     }
 }
 
+void MainWindow::displayMessage(int price)
+{
+    ui->yesButton->setVisible(true);
+    ui->noButton->setVisible(true);
+    ui->boardspace_label->setVisible(true);
+    ui->boardspace_price_label->setVisible(true);
 
-void MainWindow::on_action2_Players_triggered()
+    z.setNum(price);
+    ui->boardspace_price_label->setText(z);
+}
+
+void MainWindow::on_yesButton_clicked()
+{
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    buttonPressY = true;
+}
+
+void MainWindow::on_noButton_clicked()
+{
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    buttonPressN = false;
+}
+
+void MainWindow::on_player2button_clicked()
 {
     ui->player3_char->setVisible(false);
     ui->player3_dollar->setVisible(false);
@@ -163,10 +194,12 @@ void MainWindow::on_action2_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
+    buttonPressY = false;
+    buttonPressN = false;
     initGame(2);
 }
 
-void MainWindow::on_action3_Players_triggered()
+void MainWindow::on_player3button_clicked()
 {
     ui->player4_char->setVisible(false);
     ui->player4_dollar->setVisible(false);
@@ -220,10 +253,12 @@ void MainWindow::on_action3_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
+    buttonPressY = false;
+    buttonPressN = false;
     initGame(3);
 }
 
-void MainWindow::on_action4_Players_triggered()
+void MainWindow::on_player4button_clicked()
 {
     ui->player5_char->setVisible(false);
     ui->player5_dollar->setVisible(false);
@@ -278,10 +313,12 @@ void MainWindow::on_action4_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
+    buttonPressY = false;
+    buttonPressN = false;
     initGame(4);
 }
 
-void MainWindow::on_action5_Players_triggered()
+void MainWindow::on_player5button_clicked()
 {
     ui->player6_char->setVisible(false);
     ui->player6_dollar->setVisible(false);
@@ -337,10 +374,12 @@ void MainWindow::on_action5_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
+    buttonPressY = false;
+    buttonPressN = false;
     initGame(5);
 }
 
-void MainWindow::on_action6_Players_triggered()
+void MainWindow::on_player6button_clicked()
 {
     ui->player1_char->setVisible(true);
     ui->player1_dollar->setVisible(true);
@@ -397,5 +436,7 @@ void MainWindow::on_action6_Players_triggered()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
+    buttonPressY = false;
+    buttonPressN = false;
     initGame(6);
 }
