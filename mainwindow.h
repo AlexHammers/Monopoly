@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QWaitCondition>
+#include <QMutex>
 
 namespace Ui {
 class MainWindow;
@@ -14,8 +16,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
-    void displayMessage(int price);
 
 private slots:
     void on_diceButton_clicked();
@@ -36,11 +36,14 @@ private slots:
 
     void on_player6button_clicked();
 
+    void displayMessage(int price);
 private:
     Ui::MainWindow *ui;
     int diceRoll1;
     int diceRoll2;
     QString z;
+    QWaitCondition buyButtonWait;
+    QMutex mutex;
 };
 
 #endif // MAINWINDOW_H

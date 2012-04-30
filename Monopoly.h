@@ -21,6 +21,7 @@ int numOfUtilities;
 int numOfRailroads;
 bool inJail;
 int inJailCounter;
+bool inGame;
 };
 
 struct Space
@@ -49,7 +50,6 @@ extern bool buttonPressN;
 // End Variables
 
 // Functions
-extern void displayMessage(int price);
 void initGame(int numPlayers);
 void Move(int numOfSpaces);
 void PayRent(int rent);
@@ -62,6 +62,8 @@ void CommunityChest();
 void Chance();
 void GoToJail();
 bool evaluateJail(int dice1, int dice2);
+void endGame();
+void killPlayer(int playerNum);
 // End Functions
 
 #endif /* MONOPOLY_HPP_ */
