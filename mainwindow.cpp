@@ -14,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->menuBar->setVisible(true);
 }
 
 MainWindow::~MainWindow()
@@ -142,9 +141,7 @@ void MainWindow::on_noButton_clicked()
     buttonPressN = false;
 }
 
-
-
-void MainWindow::on_action2_Players_triggered()
+void MainWindow::on_player2button_clicked()
 {
     ui->player3_char->setVisible(false);
     ui->player3_dollar->setVisible(false);
@@ -202,7 +199,7 @@ void MainWindow::on_action2_Players_triggered()
     initGame(2);
 }
 
-void MainWindow::on_action3_Players_triggered()
+void MainWindow::on_player3button_clicked()
 {
     ui->player4_char->setVisible(false);
     ui->player4_dollar->setVisible(false);
@@ -261,7 +258,7 @@ void MainWindow::on_action3_Players_triggered()
     initGame(3);
 }
 
-void MainWindow::on_action4_Players_triggered()
+void MainWindow::on_player4button_clicked()
 {
     ui->player5_char->setVisible(false);
     ui->player5_dollar->setVisible(false);
@@ -321,7 +318,7 @@ void MainWindow::on_action4_Players_triggered()
     initGame(4);
 }
 
-void MainWindow::on_action5_Players_triggered()
+void MainWindow::on_player5button_clicked()
 {
     ui->player6_char->setVisible(false);
     ui->player6_dollar->setVisible(false);
@@ -382,7 +379,7 @@ void MainWindow::on_action5_Players_triggered()
     initGame(5);
 }
 
-void MainWindow::on_action6_Players_triggered()
+void MainWindow::on_player6button_clicked()
 {
     ui->player1_char->setVisible(true);
     ui->player1_dollar->setVisible(true);

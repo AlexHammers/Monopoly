@@ -762,7 +762,7 @@ void Property(int curPos)
 {
     if (board[curPos].owner == -1)
     {
-        displayMessage(board[curPos].cost);
+        //displayMessage(board[curPos].cost);
 
         while (!buttonPressY || !buttonPressN);
 
@@ -784,7 +784,7 @@ void Railroad(int numOfRailroadsOwned)
 {
     if (board[players[curPlayer].curPos].owner == -1)
     {
-        displayMessage(board[players[curPlayer].curPos].cost);
+        //displayMessage(board[players[curPlayer].curPos].cost);
 
         while (!buttonPressY || !buttonPressN);
 
@@ -806,7 +806,7 @@ void Utility(int numOfUtilitiesOwned, int diceRoll)
 {
     if (board[players[curPlayer].curPos].owner == -1)
     {
-        displayMessage(board[players[curPlayer].curPos].cost);
+        //displayMessage(board[players[curPlayer].curPos].cost);
 
         while (!buttonPressY || !buttonPressN);
 
