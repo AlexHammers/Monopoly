@@ -42,8 +42,7 @@ private:
     int diceRoll1;
     int diceRoll2;
     QString z;
-    QWaitCondition buyButtonWait;
-    QMutex mutex;
+    int tempPlayer;
 };
 
 #endif // MAINWINDOW_H

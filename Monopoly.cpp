@@ -779,21 +779,16 @@ void killPlayer(int playerNum)
     players[playerNum].inJailCounter = 0;
 }
 
+void buySpace(int player)
+{
+    int space = players[player].curPos;
+    board[space].owner = player;
+    players[player].money -= board[space].cost;
+}
+
 void Property(int curPos)
 {
-    if (board[curPos].owner == -1)
-    {
-        //while (!buttonPressY || !buttonPressN);
-
-        if (buttonPressY)
-        {
-            board[curPos].owner = curPlayer;
-        }
-
-        buttonPressY = false;
-        buttonPressN = false;
-    }
-    else if (board[curPos].owner != curPlayer)
+    if (board[curPos].owner != -1)
     {
         PayRent(board[curPos].rent[board[curPos].numOfHouses]);
     }
@@ -801,39 +796,15 @@ void Property(int curPos)
 
 void Railroad(int numOfRailroadsOwned)
 {
-    if (board[players[curPlayer].curPos].owner == -1)
+    if (board[players[curPlayer].curPos].owner != -1)
     {
-        //while (!buttonPressY || !buttonPressN);
-
-        if (buttonPressY)
-        {
-            board[players[curPlayer].curPos].owner = curPlayer;
-        }
-
-        buttonPressY = false;
-        buttonPressN = false;
-    }
-    else
-    {
-        PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned]);
+        PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned -1]);
     }
 }
 
 void Utility(int numOfUtilitiesOwned, int diceRoll)
 {
-    if (board[players[curPlayer].curPos].owner == -1)
-    {
-        //while (!buttonPressY || !buttonPressN);
-
-        if (buttonPressY)
-        {
-            board[players[curPlayer].curPos].owner = curPlayer;
-        }
-
-        buttonPressY = false;
-        buttonPressN = false;
-    }
-    else
+    if (board[players[curPlayer].curPos].owner != -1)
     {
         int rent = 0;
         switch(numOfUtilitiesOwned)
