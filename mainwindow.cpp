@@ -7,8 +7,6 @@ Player players[MaxNumOfPlayers];
 Space board[MaxBoardSize];
 int curPlayer;
 int numOfPlayers;
-bool buttonPressY;
-bool buttonPressN;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -64,17 +62,30 @@ void MainWindow::on_diceButton_clicked()
                 break;
         }
 
+        tempPlayer = curPlayer;
+
+        Move(diceRoll1 + diceRoll2);
+
         if(board[spaceMove].spaceType == _Property || board[spaceMove].spaceType == _Railroad ||board[spaceMove].spaceType == _Utility)
         {
-            if (board[spaceMove].owner == -1)
+            if (board[spaceMove].owner == -1 && players[curPlayer].money >= board[spaceMove].cost)
             {
                 displayMessage(board[spaceMove].cost);
             }
+            else
+            {
+                updateBoard();
+            }
         }
-        Move(diceRoll1 + diceRoll2);
+        else
+        {
+            updateBoard();
+        }
     }
-
-    updateBoard();
+    else
+    {
+        Move(0);
+    }
 }
 
 void MainWindow::updateBoard()
@@ -127,10 +138,6 @@ void MainWindow::displayMessage(int price)
 
     z.setNum(price);
     ui->boardspace_price_label->setText(z);
-
-    mutex.lock();
-    buyButtonWait.wait(&mutex);
-    mutex.unlock();
 }
 
 void MainWindow::on_yesButton_clicked()
@@ -140,8 +147,8 @@ void MainWindow::on_yesButton_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    buttonPressY = true;
-    buyButtonWait.wakeAll();
+    buySpace(tempPlayer);
+    updateBoard();
 }
 
 void MainWindow::on_noButton_clicked()
@@ -151,8 +158,7 @@ void MainWindow::on_noButton_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    buttonPressN = false;
-    buyButtonWait.wakeAll();
+    updateBoard();
 }
 
 void MainWindow::on_player2button_clicked()
@@ -208,8 +214,6 @@ void MainWindow::on_player2button_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    buttonPressY = false;
-    buttonPressN = false;
     initGame(2);
 }
 
@@ -267,8 +271,6 @@ void MainWindow::on_player3button_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    buttonPressY = false;
-    buttonPressN = false;
     initGame(3);
 }
 
@@ -327,8 +329,6 @@ void MainWindow::on_player4button_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    buttonPressY = false;
-    buttonPressN = false;
     initGame(4);
 }
 
@@ -388,8 +388,6 @@ void MainWindow::on_player5button_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    buttonPressY = false;
-    buttonPressN = false;
     initGame(5);
 }
 
@@ -450,7 +448,5 @@ void MainWindow::on_player6button_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    buttonPressY = false;
-    buttonPressN = false;
     initGame(6);
 }

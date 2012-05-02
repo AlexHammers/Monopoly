@@ -45,8 +45,6 @@ extern int numOfPlayers;
 extern int curPlayer;
 extern Space board[MaxBoardSize];
 extern Player players [MaxNumOfPlayers];
-extern bool buttonPressY;
-extern bool buttonPressN;
 // End Variables
 
 // Functions
@@ -64,6 +62,7 @@ void GoToJail();
 bool evaluateJail(int dice1, int dice2);
 void endGame();
 void killPlayer(int playerNum);
+void buySpace(int player);
 // End Functions
 
 #endif /* MONOPOLY_HPP_ */
