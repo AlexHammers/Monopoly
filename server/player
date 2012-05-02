@@ -1,0 +1,19 @@
+Actions a player can do:
+	buy a property
+	pay rent
+	buy a house on a property
+	buy a hotel on a property
+	roll dice
+	go to jail
+	attempt to get out of jail
+	pay to get out of jail
+	recieve free parking money
+	draw a card
+
+What a player has to keep track of:
+	Money
+	owned properties
+	in jail/out of jail
+	number of utilities owned
+	number of railroads owned
+	which monopolies it owns
