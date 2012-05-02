@@ -780,6 +780,102 @@ bool evaluateJail(int dice1, int dice2)
     }
 }
 
+bool evaluateHouse()
+{
+    int curPos = players[curPlayer].curPos;
+    if (board[curPos].owner == curPlayer)
+    {
+        if (board[curPos].numOfHouses < 4)
+        {
+            int group1 = board[curPos].groupedWith1;
+            int group2 = board[curPos].groupedWith2;
+
+            if (board[group1].owner == curPlayer && group2 == -1)
+            {
+                switch (board[curPos].numOfHouses)
+                {
+                    case 0:
+                        return true;
+                    case 1:
+                        if (board[group1].numOfHouses != 1)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    case 2:
+                        if (board[group1].numOfHouses != 2)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    case 3:
+                        if (board[group1].numOfHouses != 3)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                }
+            }
+            else if (board[group1].owner == curPlayer && board[group2].owner == curPlayer)
+            {
+                switch (board[curPos].numOfHouses)
+                {
+                    case 0:
+                        return true;
+                    case 1:
+                        if (board[group1].numOfHouses != 1 && board[group2].numOfHouses != 1)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    case 2:
+                        if (board[group1].numOfHouses != 2 && board[group2].numOfHouses != 2)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    case 3:
+                        if (board[group1].numOfHouses != 3 && board[group2].numOfHouses != 3)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void PayRent(int rent)
 {
     int owner = board[players[curPlayer].curPos].owner;
@@ -816,6 +912,18 @@ void buySpace(int player)
     int space = players[player].curPos;
     board[space].owner = player;
     players[player].money -= board[space].cost;
+
+    if(players[curPlayer].money <= 0)
+    {
+        killPlayer(curPlayer);
+    }
+}
+
+void houseBuy(int player)
+{
+    int space = players[player].curPos;
+    players[player].money -= board[space].costPerHouse;
+    board[space].numOfHouses++;
 
     if(players[curPlayer].money <= 0)
     {
