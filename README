@@ -38,3 +38,9 @@ Players pieces are represented by a colored square on the board space they are o
       build on all properties in a monopoly at the same rate (e.g. you cannot buy two houses for one property when
       the other properties don't have any houses on them.). And you are only able to buy houses for properties when
       you land on them.
+
+Limitations:
+  You cannot see the number of houses on any one property.
+  You cannot see which properties are owned by whom.
+  Community Chest and Chance cards don't display a message, they only add or subract money.
+  You can only see the last player to have landed on the spot (so you cannot see multiple players on the same space)
