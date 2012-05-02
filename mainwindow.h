@@ -38,6 +38,8 @@ private slots:
 
     void displayMessage(int price);
 
+    void displayHouse(int price);
+
     void gameFinished();
 private:
     Ui::MainWindow *ui;
@@ -45,6 +47,7 @@ private:
     int diceRoll2;
     QString z;
     int tempPlayer;
+    bool buyHouse;
 };
 
 #endif // MAINWINDOW_H
