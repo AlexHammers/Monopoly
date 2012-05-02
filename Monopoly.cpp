@@ -1,7 +1,9 @@
 #include "Monopoly.h"
+#include "stdlib.h"
 
 void initGame(int numPlayers)
 {
+  srand( time(NULL));
     numOfPlayers = numPlayers;
 
     gameEnd = false;
@@ -14,7 +16,7 @@ void initGame(int numPlayers)
         players[i].money = 1500;
         players[i].numOfRailroads = 0;
         players[i].numOfUtilities = 0;
-        players[i].inGame = true;
+	players[i].inGame = true;
     }
 
     curPlayer = 0;
@@ -691,10 +693,10 @@ void Move(int numOfSpaces)
             Property(players[curPlayer].curPos);
             break;
         case _Railroad:
-            Railroad(players[curPlayer].numOfRailroads);
+            Railroad();
             break;
         case _Utility:
-            Utility(players[curPlayer].numOfUtilities, numOfSpaces);
+            Utility(numOfSpaces);
             break;
         case _IncomeTax:
             IncomeTax();
@@ -716,6 +718,7 @@ void Move(int numOfSpaces)
             break;
         case _GoToJail:
             GoToJail();
+            break;
     }
 
     //increase player + evaluate
@@ -777,11 +780,11 @@ void killPlayer(int playerNum)
     players[playerNum].inGame = false;
     for(int i = 0; i < MaxBoardSize; i++)
     {
-        if(board[i].owner == playerNum)
-        {
-            board[i].numOfHouses = 0;
+	if(board[i].owner == playerNum)
+	{
+	    board[i].numOfHouses = 0;
             board[i].owner = -1;
-        }
+	}
     }
     players[playerNum].inJail = false;
     players[playerNum].inJailCounter = 0;
@@ -802,18 +805,22 @@ void Property(int curPos)
     }
 }
 
-void Railroad(int numOfRailroadsOwned)
+void Railroad()
 {
     if (board[players[curPlayer].curPos].owner != -1)
     {
+    	int numOfRailroadsOwned = players[board[players[curPlayer].curPos].owner].numOfRailroads;
+        //Railroads rent[0] = 25, [1] = 50, [2] = 100, [3] = 200
+        PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned-1]);
         PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned -1]);
     }
 }
 
-void Utility(int numOfUtilitiesOwned, int diceRoll)
+void Utility(int diceRoll)
 {
     if (board[players[curPlayer].curPos].owner != -1)
     {
+    	int numOfUtilitiesOwned = players[board[players[curPlayer].curPos].owner].numOfUtilities;
         int rent = 0;
         switch(numOfUtilitiesOwned)
         {

@@ -9,14 +9,14 @@
 using std::string;
 
 class monopoly::game::utility : public monopoly::game::property{
-public:
-	utility();
-	utility(int price, int mortgage_value, int space, string name,
-			boost::array<int, 3> mults);
-
-private:
-	int get_rent(monopoly::game::player * actor, int dice_roll);
-	boost::array<int, 3> rent_mults;
+ public:
+  utility();
+  utility(int price, int mortgage_value, int space, string name,
+	  boost::array<int, 3> mults);
+  
+ private:
+  int get_rent(monopoly::game::player * actor, int dice_roll);
+  boost::array<int, 3> rent_mults;
 };
 
 #endif

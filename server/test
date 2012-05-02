@@ -1,0 +1,50 @@
+% main
+Hello
+player::sell_railroad: Player does not own any railroads
+1
+PN8monopoly4game11board_spaceE
+N8monopoly4game8railroadE
+8
+Bob
+property::action: cannot accept NULL player argument
+Rent: 0
+0
+Rent: 4
+0
+Rent: 10
+0
+Rent: 30
+0
+Rent: 90
+0
+% make un
+make: *** No rule to make target `un'.  Stop.
+% make run
+main
+Hello
+player::sell_railroad: Player does not own any railroads
+1
+PN8monopoly4game11board_spaceE
+N8monopoly4game8railroadE
+8
+Bob
+property::action: cannot accept NULL player argument
+Rent: 0
+0
+Rent: 4
+0
+Rent: 10
+0
+Rent: 30
+0
+Rent: 90
+0
+% hello
+The program 'hello' can be found in the following packages:
+ * hello
+ * hello-debhelper
+Try: sudo apt-get install <selected package>
+% exit
+exit
+
+Process shell exited abnormally with code 127
