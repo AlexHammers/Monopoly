@@ -717,11 +717,13 @@ void Move(int numOfSpaces)
     }
 
     //increase player + evaluate
-    curPlayer++;
-    if (curPlayer == numOfPlayers)
-    {
-        curPlayer = 0;
-    }
+    int previousPlayer = curPlayer;
+    curPlayer = (curPlayer + 1)%numOfPlayers;
+    while(!players[curPlayer].inGame)
+        curPlayer = (curPlayer + 1)%numOfPlayers;
+
+    if(curPlayer==previousPlayer)
+        endGame();
 }
 
 void endGame()
@@ -761,6 +763,10 @@ void PayRent(int rent)
     {
         players[owner].money += rent;
         players[curPlayer].money -= rent;
+        if(players[curPlayer].money < 0)
+        {
+            killPlayer(curPlayer);
+        }
     }
 }
 
