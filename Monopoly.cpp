@@ -690,10 +690,10 @@ void Move(int numOfSpaces)
             Property(players[curPlayer].curPos);
             break;
         case _Railroad:
-            Railroad(players[curPlayer].numOfRailroads);
+            Railroad();
             break;
         case _Utility:
-            Utility(players[curPlayer].numOfUtilities, numOfSpaces);
+            Utility(numOfSpaces);
             break;
         case _IncomeTax:
             IncomeTax();
@@ -715,6 +715,7 @@ void Move(int numOfSpaces)
             break;
         case _GoToJail:
             GoToJail();
+            break;
     }
 
     //increase player + evaluate
@@ -725,11 +726,6 @@ void Move(int numOfSpaces)
 
     if(curPlayer==previousPlayer)
         endGame();
-}
-
-void endGame()
-{
-
 }
 
 void endGame()
@@ -792,21 +788,6 @@ void killPlayer(int playerNum)
     players[playerNum].inJailCounter = 0;
 }
 
-void killPlayer(int playerNum)
-{
-    players[playerNum].inGame = false;
-    for(int i = 0; i < MaxBoardSize; i++)
-    {
-        if(board[i].owner == playerNum)
-        {
-            board[i].numOfHouses = 0;
-            board[i].owner = -1;
-        }
-    }
-    players[playerNum].inJail = false;
-    players[playerNum].inJailCounter = 0;
-}
-
 void Property(int curPos)
 {
     if (board[curPos].owner == -1)
@@ -827,7 +808,7 @@ void Property(int curPos)
     }
 }
 
-void Railroad(int numOfRailroadsOwned)
+void Railroad()
 {
     if (board[players[curPlayer].curPos].owner == -1)
     {
@@ -843,12 +824,13 @@ void Railroad(int numOfRailroadsOwned)
     }
     else
     {
+    	int numOfRailroadsOwned = players[board[players[curPlayer].curPos].owner].numOfRailroads;
         //Railroads rent[0] = 25, [1] = 50, [2] = 100, [3] = 200
         PayRent(board[players[curPlayer].curPos].rent[numOfRailroadsOwned-1]);
     }
 }
 
-void Utility(int numOfUtilitiesOwned, int diceRoll)
+void Utility(int diceRoll)
 {
     if (board[players[curPlayer].curPos].owner == -1)
     {
@@ -864,6 +846,7 @@ void Utility(int numOfUtilitiesOwned, int diceRoll)
     }
     else
     {
+    	int numOfUtilitiesOwned = players[board[players[curPlayer].curPos].owner].numOfUtilities;
         int rent = 0;
         switch(numOfUtilitiesOwned)
         {
