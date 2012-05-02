@@ -3,6 +3,7 @@
 
 void initGame(int numPlayers)
 {
+  srand( time(NULL));
     numOfPlayers = numPlayers;
 
     for (int i = 0; i < numOfPlayers; i++)
@@ -806,16 +807,6 @@ void Property(int curPos)
 void Railroad()
 {
     if (board[players[curPlayer].curPos].owner != -1)
-    {
-        if (buttonPressY)
-        {
-            board[players[curPlayer].curPos].owner = curPlayer;
-        }
-
-        buttonPressY = false;
-        buttonPressN = false;
-    }
-    else
     {
     	int numOfRailroadsOwned = players[board[players[curPlayer].curPos].owner].numOfRailroads;
         //Railroads rent[0] = 25, [1] = 50, [2] = 100, [3] = 200
