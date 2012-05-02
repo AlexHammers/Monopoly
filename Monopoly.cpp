@@ -766,11 +766,10 @@ void PayRent(int rent)
     {
         players[owner].money += rent;
         players[curPlayer].money -= rent;
-	if(players[curPlayer].money < 0)
-	{
-	    killPlayer(curPlayer);
-	}
-		
+        if(players[curPlayer].money < 0)
+        {
+            killPlayer(curPlayer);
+        }
     }
 }
 

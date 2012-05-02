@@ -13,6 +13,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->activeplayer_dollar->setVisible(false);
+    ui->activeplayer_label->setVisible(false);
+    ui->activeplayer_sign->setVisible(false);
+
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->diceButton->setVisible(false);
+
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    ui->dice1_label->setVisible(false);
+    ui->dice2_label->setVisible(false);
+    ui->label_8->setVisible(false);
 }
 
 MainWindow::~MainWindow()
@@ -214,6 +229,15 @@ void MainWindow::on_player2button_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
+    ui->dice1_label->setVisible(true);
+    ui->dice2_label->setVisible(true);
+    ui->label_8->setVisible(true);
+    ui->diceButton->setVisible(true);
+
+    ui->activeplayer_dollar->setVisible(true);
+    ui->activeplayer_label->setVisible(true);
+    ui->activeplayer_sign->setVisible(true);
+
     initGame(2);
 }
 
@@ -270,6 +294,15 @@ void MainWindow::on_player3button_clicked()
     ui->noButton->setVisible(false);
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
+
+    ui->dice1_label->setVisible(true);
+    ui->dice2_label->setVisible(true);
+    ui->label_8->setVisible(true);
+    ui->diceButton->setVisible(true);
+
+    ui->activeplayer_dollar->setVisible(true);
+    ui->activeplayer_label->setVisible(true);
+    ui->activeplayer_sign->setVisible(true);
 
     initGame(3);
 }
@@ -328,6 +361,15 @@ void MainWindow::on_player4button_clicked()
     ui->noButton->setVisible(false);
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
+
+    ui->dice1_label->setVisible(true);
+    ui->dice2_label->setVisible(true);
+    ui->label_8->setVisible(true);
+    ui->diceButton->setVisible(true);
+
+    ui->activeplayer_dollar->setVisible(true);
+    ui->activeplayer_label->setVisible(true);
+    ui->activeplayer_sign->setVisible(true);
 
     initGame(4);
 }
@@ -388,6 +430,15 @@ void MainWindow::on_player5button_clicked()
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
+    ui->dice1_label->setVisible(true);
+    ui->dice2_label->setVisible(true);
+    ui->label_8->setVisible(true);
+    ui->diceButton->setVisible(true);
+
+    ui->activeplayer_dollar->setVisible(true);
+    ui->activeplayer_label->setVisible(true);
+    ui->activeplayer_sign->setVisible(true);
+
     initGame(5);
 }
 
@@ -447,6 +498,15 @@ void MainWindow::on_player6button_clicked()
     ui->noButton->setVisible(false);
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
+
+    ui->dice1_label->setVisible(true);
+    ui->dice2_label->setVisible(true);
+    ui->label_8->setVisible(true);
+    ui->diceButton->setVisible(true);
+
+    ui->activeplayer_dollar->setVisible(true);
+    ui->activeplayer_label->setVisible(true);
+    ui->activeplayer_sign->setVisible(true);
 
     initGame(6);
 }
