@@ -731,7 +731,7 @@ void Move(int numOfSpaces)
 
 void endGame()
 {
-
+  gameEnd = true;
 }
 
 bool evaluateJail(int dice1, int dice2)
