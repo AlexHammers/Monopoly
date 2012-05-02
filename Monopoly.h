@@ -43,6 +43,7 @@ struct Space
 // Variables
 extern int numOfPlayers;
 extern int curPlayer;
+extern bool gameEnd;
 extern Space board[MaxBoardSize];
 extern Player players [MaxNumOfPlayers];
 // End Variables

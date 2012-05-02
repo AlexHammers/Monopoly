@@ -6,6 +6,8 @@ void initGame(int numPlayers)
   srand( time(NULL));
     numOfPlayers = numPlayers;
 
+    gameEnd = false;
+
     for (int i = 0; i < numOfPlayers; i++)
     {
         players[i].curPos = 0;
@@ -731,7 +733,7 @@ void Move(int numOfSpaces)
 
 void endGame()
 {
-  gameEnd = true;
+    gameEnd = true;
 }
 
 bool evaluateJail(int dice1, int dice2)
