@@ -9,6 +9,8 @@ int curPlayer;
 int numOfPlayers;
 bool gameEnd;
 
+//buy houses?
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -371,6 +373,11 @@ void MainWindow::gameFinished()
 
 void MainWindow::displayMessage(int price)
 {
+    ui->diceButton->setVisible(false);
+    ui->dice1_label->setVisible(false);
+    ui->dice2_label->setVisible(false);
+    ui->label_8->setVisible(false);
+
     ui->yesButton->setVisible(true);
     ui->noButton->setVisible(true);
     ui->boardspace_label->setVisible(true);
@@ -382,6 +389,11 @@ void MainWindow::displayMessage(int price)
 
 void MainWindow::on_yesButton_clicked()
 {
+    ui->diceButton->setVisible(true);
+    ui->dice1_label->setVisible(true);
+    ui->dice2_label->setVisible(true);
+    ui->label_8->setVisible(true);
+
     ui->yesButton->setVisible(false);
     ui->noButton->setVisible(false);
     ui->boardspace_label->setVisible(false);
@@ -393,6 +405,11 @@ void MainWindow::on_yesButton_clicked()
 
 void MainWindow::on_noButton_clicked()
 {
+    ui->diceButton->setVisible(true);
+    ui->dice1_label->setVisible(true);
+    ui->dice2_label->setVisible(true);
+    ui->label_8->setVisible(true);
+
     ui->yesButton->setVisible(false);
     ui->noButton->setVisible(false);
     ui->boardspace_label->setVisible(false);
@@ -462,6 +479,8 @@ void MainWindow::on_player2button_clicked()
     ui->activeplayer_dollar->setVisible(true);
     ui->activeplayer_label->setVisible(true);
     ui->activeplayer_sign->setVisible(true);
+    ui->activeplayer_label->setText("Player 1");
+    ui->activeplayer_dollar->setText("1500");
 
     initGame(2);
 }
@@ -528,6 +547,8 @@ void MainWindow::on_player3button_clicked()
     ui->activeplayer_dollar->setVisible(true);
     ui->activeplayer_label->setVisible(true);
     ui->activeplayer_sign->setVisible(true);
+    ui->activeplayer_label->setText("Player 1");
+    ui->activeplayer_dollar->setText("1500");
 
     initGame(3);
 }
@@ -595,6 +616,8 @@ void MainWindow::on_player4button_clicked()
     ui->activeplayer_dollar->setVisible(true);
     ui->activeplayer_label->setVisible(true);
     ui->activeplayer_sign->setVisible(true);
+    ui->activeplayer_label->setText("Player 1");
+    ui->activeplayer_dollar->setText("1500");
 
     initGame(4);
 }
@@ -663,6 +686,8 @@ void MainWindow::on_player5button_clicked()
     ui->activeplayer_dollar->setVisible(true);
     ui->activeplayer_label->setVisible(true);
     ui->activeplayer_sign->setVisible(true);
+    ui->activeplayer_label->setText("Player 1");
+    ui->activeplayer_dollar->setText("1500");
 
     initGame(5);
 }
@@ -732,6 +757,8 @@ void MainWindow::on_player6button_clicked()
     ui->activeplayer_dollar->setVisible(true);
     ui->activeplayer_label->setVisible(true);
     ui->activeplayer_sign->setVisible(true);
+    ui->activeplayer_label->setText("Player 1");
+    ui->activeplayer_dollar->setText("1500");
 
     initGame(6);
 }
