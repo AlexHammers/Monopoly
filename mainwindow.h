@@ -37,6 +37,8 @@ private slots:
     void on_player6button_clicked();
 
     void displayMessage(int price);
+
+    void gameFinished();
 private:
     Ui::MainWindow *ui;
     int diceRoll1;

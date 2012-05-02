@@ -7,6 +7,7 @@ Player players[MaxNumOfPlayers];
 Space board[MaxBoardSize];
 int curPlayer;
 int numOfPlayers;
+bool gameEnd;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -101,6 +102,11 @@ void MainWindow::on_diceButton_clicked()
     {
         Move(0);
     }
+
+    if (gameEnd)
+    {
+        gameFinished();
+    }
 }
 
 void MainWindow::updateBoard()
@@ -141,6 +147,225 @@ void MainWindow::updateBoard()
                 ui->player6_char->move(board[players[i].curPos].xCoord, board[players[i].curPos].yCoord);
                 break;
         }
+    }
+}
+
+void MainWindow::gameFinished()
+{
+    ui->activeplayer_dollar->setVisible(false);
+    ui->activeplayer_label->setVisible(false);
+    ui->activeplayer_sign->setVisible(false);
+
+    ui->yesButton->setVisible(false);
+    ui->noButton->setVisible(false);
+    ui->diceButton->setVisible(false);
+
+    ui->boardspace_label->setVisible(false);
+    ui->boardspace_price_label->setVisible(false);
+
+    ui->dice1_label->setVisible(false);
+    ui->dice2_label->setVisible(false);
+    ui->label_8->setVisible(false);
+
+    int winnerMoney = 0;
+    int tempPlayer = 0;
+    for (int i = 0; i < numOfPlayers; i++)
+    {
+        if (players[i].money > winnerMoney)
+        {
+            winnerMoney = players[i].money;
+            tempPlayer = i;
+        }
+    }
+
+    switch (tempPlayer)
+    {
+        case 0:
+            ui->player2_char->setVisible(false);
+            ui->player2_dollar->setVisible(false);
+            ui->player2_label->setVisible(false);
+            ui->player2_sign->setVisible(false);
+            ui->label_2->setVisible(false);
+
+            ui->player3_char->setVisible(false);
+            ui->player3_dollar->setVisible(false);
+            ui->player3_label->setVisible(false);
+            ui->player3_sign->setVisible(false);
+            ui->label_3->setVisible(false);
+
+            ui->player4_char->setVisible(false);
+            ui->player4_dollar->setVisible(false);
+            ui->player4_label->setVisible(false);
+            ui->player4_sign->setVisible(false);
+            ui->label_4->setVisible(false);
+
+            ui->player5_char->setVisible(false);
+            ui->player5_dollar->setVisible(false);
+            ui->player5_label->setVisible(false);
+            ui->player5_sign->setVisible(false);
+            ui->label_5->setVisible(false);
+
+            ui->player6_char->setVisible(false);
+            ui->player6_dollar->setVisible(false);
+            ui->player6_label->setVisible(false);
+            ui->player6_sign->setVisible(false);
+            ui->label_6->setVisible(false);
+            break;
+        case 1:
+            ui->player1_char->setVisible(false);
+            ui->player1_dollar->setVisible(false);
+            ui->player1_label->setVisible(false);
+            ui->player1_sign->setVisible(false);
+            ui->label->setVisible(false);
+
+            ui->player3_char->setVisible(false);
+            ui->player3_dollar->setVisible(false);
+            ui->player3_label->setVisible(false);
+            ui->player3_sign->setVisible(false);
+            ui->label_3->setVisible(false);
+
+            ui->player4_char->setVisible(false);
+            ui->player4_dollar->setVisible(false);
+            ui->player4_label->setVisible(false);
+            ui->player4_sign->setVisible(false);
+            ui->label_4->setVisible(false);
+
+            ui->player5_char->setVisible(false);
+            ui->player5_dollar->setVisible(false);
+            ui->player5_label->setVisible(false);
+            ui->player5_sign->setVisible(false);
+            ui->label_5->setVisible(false);
+
+            ui->player6_char->setVisible(false);
+            ui->player6_dollar->setVisible(false);
+            ui->player6_label->setVisible(false);
+            ui->player6_sign->setVisible(false);
+            ui->label_6->setVisible(false);
+            break;
+        case 2:
+            ui->player1_char->setVisible(false);
+            ui->player1_dollar->setVisible(false);
+            ui->player1_label->setVisible(false);
+            ui->player1_sign->setVisible(false);
+            ui->label->setVisible(false);
+
+            ui->player2_char->setVisible(false);
+            ui->player2_dollar->setVisible(false);
+            ui->player2_label->setVisible(false);
+            ui->player2_sign->setVisible(false);
+            ui->label_2->setVisible(false);
+
+            ui->player4_char->setVisible(false);
+            ui->player4_dollar->setVisible(false);
+            ui->player4_label->setVisible(false);
+            ui->player4_sign->setVisible(false);
+            ui->label_4->setVisible(false);
+
+            ui->player5_char->setVisible(false);
+            ui->player5_dollar->setVisible(false);
+            ui->player5_label->setVisible(false);
+            ui->player5_sign->setVisible(false);
+            ui->label_5->setVisible(false);
+
+            ui->player6_char->setVisible(false);
+            ui->player6_dollar->setVisible(false);
+            ui->player6_label->setVisible(false);
+            ui->player6_sign->setVisible(false);
+            ui->label_6->setVisible(false);
+            break;
+        case 3:
+            ui->player1_char->setVisible(false);
+            ui->player1_dollar->setVisible(false);
+            ui->player1_label->setVisible(false);
+            ui->player1_sign->setVisible(false);
+            ui->label->setVisible(false);
+
+            ui->player2_char->setVisible(false);
+            ui->player2_dollar->setVisible(false);
+            ui->player2_label->setVisible(false);
+            ui->player2_sign->setVisible(false);
+            ui->label_2->setVisible(false);
+
+            ui->player3_char->setVisible(false);
+            ui->player3_dollar->setVisible(false);
+            ui->player3_label->setVisible(false);
+            ui->player3_sign->setVisible(false);
+            ui->label_3->setVisible(false);
+
+            ui->player5_char->setVisible(false);
+            ui->player5_dollar->setVisible(false);
+            ui->player5_label->setVisible(false);
+            ui->player5_sign->setVisible(false);
+            ui->label_5->setVisible(false);
+
+            ui->player6_char->setVisible(false);
+            ui->player6_dollar->setVisible(false);
+            ui->player6_label->setVisible(false);
+            ui->player6_sign->setVisible(false);
+            ui->label_6->setVisible(false);
+            break;
+        case 4:
+            ui->player1_char->setVisible(false);
+            ui->player1_dollar->setVisible(false);
+            ui->player1_label->setVisible(false);
+            ui->player1_sign->setVisible(false);
+            ui->label->setVisible(false);
+
+            ui->player2_char->setVisible(false);
+            ui->player2_dollar->setVisible(false);
+            ui->player2_label->setVisible(false);
+            ui->player2_sign->setVisible(false);
+            ui->label_2->setVisible(false);
+
+            ui->player3_char->setVisible(false);
+            ui->player3_dollar->setVisible(false);
+            ui->player3_label->setVisible(false);
+            ui->player3_sign->setVisible(false);
+            ui->label_3->setVisible(false);
+
+            ui->player4_char->setVisible(false);
+            ui->player4_dollar->setVisible(false);
+            ui->player4_label->setVisible(false);
+            ui->player4_sign->setVisible(false);
+            ui->label_4->setVisible(false);
+
+            ui->player6_char->setVisible(false);
+            ui->player6_dollar->setVisible(false);
+            ui->player6_label->setVisible(false);
+            ui->player6_sign->setVisible(false);
+            ui->label_6->setVisible(false);
+            break;
+        case 5:
+            ui->player1_char->setVisible(false);
+            ui->player1_dollar->setVisible(false);
+            ui->player1_label->setVisible(false);
+            ui->player1_sign->setVisible(false);
+            ui->label->setVisible(false);
+
+            ui->player2_char->setVisible(false);
+            ui->player2_dollar->setVisible(false);
+            ui->player2_label->setVisible(false);
+            ui->player2_sign->setVisible(false);
+            ui->label_2->setVisible(false);
+
+            ui->player3_char->setVisible(false);
+            ui->player3_dollar->setVisible(false);
+            ui->player3_label->setVisible(false);
+            ui->player3_sign->setVisible(false);
+            ui->label_3->setVisible(false);
+
+            ui->player4_char->setVisible(false);
+            ui->player4_dollar->setVisible(false);
+            ui->player4_label->setVisible(false);
+            ui->player4_sign->setVisible(false);
+            ui->label_4->setVisible(false);
+
+            ui->player5_char->setVisible(false);
+            ui->player5_dollar->setVisible(false);
+            ui->player5_label->setVisible(false);
+            ui->player5_sign->setVisible(false);
+            ui->label_5->setVisible(false);
+            break;
     }
 }
 
