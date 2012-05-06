@@ -1,1 +1,46 @@
 A GUI based version of monopoly.
+
+To Compile:
+You must have qt installed. Instructions for doing so can be found here:
+http://qt-project.org/doc/qt-4.8/install-x11.html
+
+Run these commands in this order:
+qmake
+make
+
+After these commands have complete, you will hve an executable file called "Monopoly" (without quotes)
+
+To Run:
+Compile the program, then run the executable named Monopoly.
+
+Gameplay:
+Players pieces are represented by a colored square on the board space they are occupying.
+  To Play:
+    Select the number of players (2-6) with the appropriate button (All five buttons are located below the board).
+      Note: If you would like to restart at any point in the game, select the number of players for the new game, 
+        and the board will reset.
+    A player moves by clicking the roll dice button. After rolling the 2 six sided die, the player will be moved 
+      the appropriate number of spaces around the board.
+      
+      If you land on a buyable property, and have enough money to purchase it, you will be asked if you want to
+        buy the property. You must select either yes or no.
+      If you land on a space which requires you to pay rent, the required rent will automatically be payed to the
+        correct recipient.
+      If you land on Go To Jail, you will automatically be put in jail.
+      If you pass Go, 200 will automatically be given to you.
+      Free parking does nothing in this version of Monopoly.
+    
+    Once your money goes to 0 or below, you are out of the game. The game is won when one person is left.
+    If you lose, all of your properties are automatically given back to the bank and open for sale to players who 
+      land on them in following turns.
+
+    You can buy houses for properties only when you own all two or three properties in the monopoly, and you must 
+      build on all properties in a monopoly at the same rate (e.g. you cannot buy two houses for one property when
+      the other properties don't have any houses on them.). And you are only able to buy houses for properties when
+      you land on them.
+
+Limitations:
+  You cannot see the number of houses on any one property.
+  You cannot see which properties are owned by whom.
+  Community Chest and Chance cards don't display a message, they only add or subract money.
+  You can only see the last player to have landed on the spot (so you cannot see multiple players on the same space)
