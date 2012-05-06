@@ -55,12 +55,7 @@ void MainWindow::on_diceButton_clicked()
 
     if (evaluateJail(diceRoll1, diceRoll2))
     {
-        int spaceMove = players[curPlayer].curPos + diceRoll1 + diceRoll2;
-
-        if (spaceMove >= 40)
-        {
-            spaceMove -= 40;
-        }
+      int spaceMove = (players[curPlayer].curPos + diceRoll1 + diceRoll2) % MaxBoardSize;
 
         switch (curPlayer)
         {
@@ -111,6 +106,7 @@ void MainWindow::on_diceButton_clicked()
     else
     {
         Move(0);
+	updateBoard();
     }
 
     if (gameEnd)
