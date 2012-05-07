@@ -1,5 +1,10 @@
 A GUI based version of monopoly.
 
+GUI Design: Callie Johnston
+GUI Programming Callie Johnston, Lloyd Ramey
+Gameplay Design: Alex Hammers, Lloyd Ramey
+Gameplay Programming: Alex Hammers, Lloyd Ramey, Callie Johnston
+
 To Compile:
 You must have qt installed. Instructions for doing so can be found here:
 http://qt-project.org/doc/qt-4.8/install-x11.html
