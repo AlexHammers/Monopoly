@@ -780,6 +780,35 @@ bool evaluateJail(int dice1, int dice2)
     }
 }
 
+bool evaluateHouse()
+{
+    int curPos = players[curPlayer].curPos;
+    if (board[curPos].owner == curPlayer)
+    {
+        if (board[curPos].numOfHouses < 5)
+        {
+            int group1 = board[curPos].groupedWith1;
+            int group2 = board[curPos].groupedWith2;
+
+            if (board[group1].owner == curPlayer && group2 == -1)
+            {
+	      if(board[curPos].numOfHouses == 0)
+		return true;
+	      else
+		return board[curPos].numOfHouses == board[group1].numOfHouses;
+            }
+            else if (board[group1].owner == curPlayer && board[group2].owner == curPlayer)
+            {
+	      if(board[curPos].numOfHouses == 0)
+		return true;
+	      else
+		return (board[curPos].numOfHouses == board[group1].numOfHouses) && (board[curPos].numOfHouses == board[group2].numOfHouses);
+            }
+	}
+    }
+    return false;
+}
+
 void PayRent(int rent)
 {
     int owner = board[players[curPlayer].curPos].owner;
@@ -816,6 +845,18 @@ void buySpace(int player)
     int space = players[player].curPos;
     board[space].owner = player;
     players[player].money -= board[space].cost;
+
+    if(players[curPlayer].money <= 0)
+    {
+        killPlayer(curPlayer);
+    }
+}
+
+void houseBuy(int player)
+{
+    int space = players[player].curPos;
+    players[player].money -= board[space].costPerHouse;
+    board[space].numOfHouses++;
 
     if(players[curPlayer].money <= 0)
     {

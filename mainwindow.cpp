@@ -9,8 +9,6 @@ int curPlayer;
 int numOfPlayers;
 bool gameEnd;
 
-//buy houses?
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -31,6 +29,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dice1_label->setVisible(false);
     ui->dice2_label->setVisible(false);
     ui->label_8->setVisible(false);
+
+    z.setNum(0);
+    ui->dice1_label->setText(z);
+    ui->dice2_label->setText(z);
+
+    buyHouse = false;
 }
 
 MainWindow::~MainWindow()
@@ -51,12 +55,7 @@ void MainWindow::on_diceButton_clicked()
 
     if (evaluateJail(diceRoll1, diceRoll2))
     {
-        int spaceMove = players[curPlayer].curPos + diceRoll1 + diceRoll2;
-
-        if (spaceMove >= 40)
-        {
-            spaceMove -= 40;
-        }
+      int spaceMove = (players[curPlayer].curPos + diceRoll1 + diceRoll2) % MaxBoardSize;
 
         switch (curPlayer)
         {
@@ -90,6 +89,10 @@ void MainWindow::on_diceButton_clicked()
             {
                 displayMessage(board[spaceMove].cost);
             }
+            else if (evaluateHouse() && players[curPlayer].money >= board[spaceMove].costPerHouse && board[spaceMove].spaceType == _Property)
+            {
+                displayHouse(board[players[curPlayer].curPos].costPerHouse);
+            }
             else
             {
                 updateBoard();
@@ -103,6 +106,7 @@ void MainWindow::on_diceButton_clicked()
     else
     {
         Move(0);
+	updateBoard();
     }
 
     if (gameEnd)
@@ -374,41 +378,60 @@ void MainWindow::gameFinished()
 void MainWindow::displayMessage(int price)
 {
     ui->diceButton->setVisible(false);
-    ui->dice1_label->setVisible(false);
-    ui->dice2_label->setVisible(false);
-    ui->label_8->setVisible(false);
 
     ui->yesButton->setVisible(true);
     ui->noButton->setVisible(true);
     ui->boardspace_label->setVisible(true);
     ui->boardspace_price_label->setVisible(true);
 
+    ui->boardspace_label->setText("Would you like to buy this property for: $");
+
     z.setNum(price);
     ui->boardspace_price_label->setText(z);
+}
+
+void MainWindow::displayHouse(int price)
+{
+    ui->diceButton->setVisible(false);
+
+    ui->yesButton->setVisible(true);
+    ui->noButton->setVisible(true);
+    ui->boardspace_label->setVisible(true);
+    ui->boardspace_price_label->setVisible(true);
+
+    ui->boardspace_label->setText("Would you like to buy a house for: $");
+
+    z.setNum(price);
+    ui->boardspace_price_label->setText(z);
+
+    buyHouse = true;
 }
 
 void MainWindow::on_yesButton_clicked()
 {
     ui->diceButton->setVisible(true);
-    ui->dice1_label->setVisible(true);
-    ui->dice2_label->setVisible(true);
-    ui->label_8->setVisible(true);
 
     ui->yesButton->setVisible(false);
     ui->noButton->setVisible(false);
     ui->boardspace_label->setVisible(false);
     ui->boardspace_price_label->setVisible(false);
 
-    buySpace(tempPlayer);
+    if (buyHouse)
+    {
+        houseBuy(tempPlayer);
+        buyHouse = false;
+    }
+    else
+    {
+        buySpace(tempPlayer);
+    }
+
     updateBoard();
 }
 
 void MainWindow::on_noButton_clicked()
 {
     ui->diceButton->setVisible(true);
-    ui->dice1_label->setVisible(true);
-    ui->dice2_label->setVisible(true);
-    ui->label_8->setVisible(true);
 
     ui->yesButton->setVisible(false);
     ui->noButton->setVisible(false);

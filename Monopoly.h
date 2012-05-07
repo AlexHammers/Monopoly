@@ -64,6 +64,8 @@ bool evaluateJail(int dice1, int dice2);
 void endGame();
 void killPlayer(int playerNum);
 void buySpace(int player);
+void houseBuy(int player);
+bool evaluateHouse();
 // End Functions
 
 #endif /* MONOPOLY_HPP_ */
