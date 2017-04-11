@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>967</width>
-    <height>688</height>
+    <width>960</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -5668,6 +5668,11 @@
       <height>51</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Yes</string>
     </property>
@@ -5680,6 +5685,11 @@
       <width>111</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>No</string>
@@ -5729,9 +5739,14 @@
      <rect>
       <x>20</x>
       <y>620</y>
-      <width>75</width>
-      <height>23</height>
+      <width>150</width>
+      <height>50</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>2 Players</string>
@@ -5740,11 +5755,16 @@
    <widget class="QPushButton" name="player3button">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>180</x>
       <y>620</y>
-      <width>75</width>
-      <height>23</height>
+      <width>150</width>
+      <height>50</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>3 Players</string>
@@ -5753,11 +5773,16 @@
    <widget class="QPushButton" name="player4button">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>340</x>
       <y>620</y>
-      <width>75</width>
-      <height>23</height>
+      <width>150</width>
+      <height>50</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>4 Players</string>
@@ -5766,11 +5791,16 @@
    <widget class="QPushButton" name="player5button">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>500</x>
       <y>620</y>
-      <width>75</width>
-      <height>23</height>
+      <width>150</width>
+      <height>50</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>5 Players</string>
@@ -5779,11 +5809,16 @@
    <widget class="QPushButton" name="player6button">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>660</x>
       <y>620</y>
-      <width>75</width>
-      <height>23</height>
+      <width>150</width>
+      <height>50</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>6 Players</string>
